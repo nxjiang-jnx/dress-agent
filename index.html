@@ -29,7 +29,7 @@
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="stylesheet" href="./static/css/dress.css">
+  <link rel="stylesheet" href="./static/css/dress.css?v=20260923f">
 
   <script type="importmap">
     {
@@ -74,7 +74,7 @@
 </head>
 
 <body>
-<script>document.documentElement.classList.add('js');</script>
+<script>document.documentElement.classList.add('js'); window.SITE_VERSION = '20260923f';</script>
 
 <section class="hero hero-cover-desktop is-link is-hidden-touch is-fullheight video" id="top" style="overflow: hidden; position:relative;">
   <div class="hero-video is-hidden-touch"
@@ -286,63 +286,88 @@
 </section>
 
 <!-- Comparisons -->
-<section class="block is-soft" id="comparisons">
-  <div class="block__inner is-wide">
-    <div class="block__head reveal">
-      <h2 class="block__title">Comparisons</h2>
-      <p class="block__lead">ChatGarment, ISP, and GarmentRecovery do not generate textures, so we show only their geometry.</p>
+<div class="comparison-section" id="comparisons">
+  <div class="content has-text-centered">
+    <h2 class="title is-3">Comparisons</h2>
+  </div>
+  <p class="comparison-scene-prompt">ChatGarment, ISP, and GarmentRecovery do not generate textures, so we show only their geometry.</p>
+  <div class="comparison-category" data-group="layered">
+    <h3 class="title is-4 has-text-centered">Layered Outfits</h3>
+    <p class="comparison-subtitle has-text-centered">Select Scene:</p>
+    <div class="comparison-scene-buttons">
     </div>
-
-    <div class="cmp reveal" data-group="layered">
-      <div class="cmp__head">
-        <h3 class="cmp__title">Layered outfits</h3>
-      </div>
-      <div class="cmp__scenes" role="tablist"></div>
-      <div class="cmp__stage">
-        <div class="cmp__grid"></div>
-      </div>
+    <div class="comparison-grid-wrapper">
+      <div class="comparison-grid"></div>
     </div>
+  </div>
+  <div class="comparison-category" data-group="poses">
+    <h3 class="title is-4 has-text-centered">Diverse Poses and Body Shapes</h3>
+    <p class="comparison-subtitle has-text-centered">Select Scene:</p>
+    <div class="comparison-scene-buttons">
+    </div>
+    <div class="comparison-grid-wrapper">
+      <div class="comparison-grid"></div>
+    </div>
+  </div>
+</div>
+<!--/ Comparisons -->
 
-    <div class="cmp reveal" data-group="poses">
-      <div class="cmp__head">
-        <h3 class="cmp__title">Diverse poses and body shapes</h3>
-      </div>
-      <div class="cmp__scenes" role="tablist"></div>
-      <div class="cmp__stage">
-        <div class="cmp__grid"></div>
+<section class="section is-hidden-touch" id="bibtex">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <h3 class="title">Bibtex</h3>
+    </div>
+    <div class="columns is-centered">
+      <div class="content" style="margin-top: 10pt;">
+        <pre class="is-hidden-mobile"><code>@misc{jiang2026inverse,
+          title={Inverse Garment Design with Visual Agents}, 
+          author={Nanxiang Jiang and Yunuo Chen and Zeng Tao and Zizhang Li and Qi Guo and Jiajun Wu and Yin Yang and Chenfanfu Jiang},
+          year={2026},
+          eprint={XXXX.XXXXX},
+          archivePrefix={arXiv},
+          primaryClass={cs.CV},
+          url={https://arxiv.org/abs/XXXX.XXXXX}, 
+    }</code></pre>
       </div>
     </div>
   </div>
 </section>
 
-<!-- BibTeX -->
-<section class="block" id="bibtex">
-  <div class="block__inner is-narrow reveal">
-    <h2 class="block__title">BibTeX</h2>
-    <div class="bib">
-      <button class="bib__copy" id="bib-copy">Copy</button>
-      <pre><code id="bib-code">@misc{jiang2026inverse,
-  title  = {Inverse Garment Design with Visual Agents},
-  author = {Nanxiang Jiang and Yunuo Chen and Zeng Tao and Zizhang Li and Qi Guo and Jiajun Wu and Yin Yang and Chenfanfu Jiang},
-  year   = {2026}
-}</code></pre>
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <h3 class="title">Acknowledgements</h3>
     </div>
-  </div>
-</section>
-
-<footer class="foot">
-  <div class="foot__inner">
-    <p>
-      Website template adapted from <a href="https://nerfies.github.io/">Nerfies</a> and
-      <a href="https://yanzhelyu.github.io/chord/">CHORD</a>.
-      This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-    </p>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Website template modified from <a href="https://nerfies.github.io/">NeRFies</a>, <a
+              href="https://www.cs.columbia.edu/~huy/scalingup/">Scaling Up Distilling Down</a>, <a
+              href="https://umi-on-legs.github.io/">UMI on Legs</a>, and <a href="https://chen-geng.com/rose4d">Birth and Death of a Rose</a>.
+          </p>
+          <p>
+            This website is licensed under a <a rel="license"
+              href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+              Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow and modify the <a
+              href="https://github.com/nerfies/nerfies.github.io">source
+              code</a> of this website as long as
+            you link back to the <a href="https://nerfies.github.io/">NeRFies</a> page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </footer>
 
-<script type="module" src="./static/js/gallery.js"></script>
-<script src="./static/js/compare.js" defer></script>
-<script src="./static/js/site.js" defer></script>
+<script type="module" src="./static/js/gallery.js?v=20260923f"></script>
+<script src="./static/js/compare.js?v=20260923f" defer></script>
+<script src="./static/js/site.js?v=20260923f" defer></script>
 </body>
 
 </html>

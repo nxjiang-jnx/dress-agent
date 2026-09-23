@@ -32,11 +32,11 @@
  "rows": [
   {
    "id": "dressed",
-   "label": "Dressed"
+   "label": "Avatar"
   },
   {
    "id": "garment",
-   "label": "Garments only"
+   "label": "Mesh"
   }
  ],
  "groups": {

@@ -92,7 +92,7 @@ def main():
         "gallery": gallery,
         "compare": {
             "methods": methods,
-            "rows": [{"id": "dressed", "label": "Dressed"}, {"id": "garment", "label": "Garments only"}],
+            "rows": [{"id": "dressed", "label": "Avatar"}, {"id": "garment", "label": "Mesh"}],
             "groups": {"layered": [cmp_case(n) for n in (1, 2, 3, 4, 5)],
                        "poses": [cmp_case(n) for n in (6, 8, 9, 10, 11)]},
             "ours_glb": {f"experiment{n}": [str(source(f"experiment{n}")[2]), str(source(f"experiment{n}")[3])]
