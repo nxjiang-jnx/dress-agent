@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
-import { bakedParts, setBaked } from './bakedmat.js?v=20260923l';
+import { bakedParts, setBaked } from './bakedmat.js?v=20260923m';
 
 const $ = (s, r = document) => r.querySelector(s);
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -22,7 +22,9 @@ class Stage {
     this.view = view;
     this.canvas = $('#stage-canvas');
     const r = this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, antialias: true, powerPreference: 'high-performance' });
-    r.setPixelRatio(Math.min(devicePixelRatio, 2));
+    // always at least 2x: on 1x screens this supersamples, which averages away the sub-pixel
+    // seam specks that Cycles' many samples never show
+    r.setPixelRatio(Math.max(2, Math.min(devicePixelRatio, 2)));
     r.outputColorSpace = THREE.SRGBColorSpace;
     r.toneMapping = THREE.NoToneMapping;      // colours are already display-referred
     r.setClearColor(0xf0f0f0, 1);           // CHORD's viewer gray

@@ -18,7 +18,10 @@ Jekyll skips this folder, so it is not published.
 
 Order: `make_cases.py`, queue jobs, `run_jobs.py queue.json --gpu 2` and `--gpu 3`
 (bakes: `bake_case.py`, then `--body-inner-only`, then `hidden_masks.py` and `seam_fill.py`),
-then `build_site.py gallery` and `build_site.py compare`.
+`pattern_states.py` per case, then `build_site.py gallery` and `build_site.py compare`.
+For a few new cases, `/data/nanxiangjiang/homepage_renders/queues/case_all.py GPU case...` runs the
+whole chain (turntable, bake, body inside, hidden masks, seam fill) one case after another;
+`build_site.py gallery --partial` then packs every case whose bakes and patterns are done.
 
 Sources (traced from `wrapped_sim/inputs_*`):
 
