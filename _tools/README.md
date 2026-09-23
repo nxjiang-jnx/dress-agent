@@ -10,11 +10,13 @@ Jekyll skips this folder, so it is not published.
 | `orbit_render.py` | Blender turntable through the renderer; only the camera orbits (fixed radius, fitted to every azimuth) |
 | `bake_case.py` | bakes the same Cycles scene per texel for the WebGL viewer (body AgX, garments Standard; body and cloth are baked on both sides so back faces, e.g. an open mouth, look as in Cycles); `--layers L0,L1` bakes a peeled state |
 | `seam_fill.py` | refills island borders and gutters of a bake from the island interior; on the body it also clears the black eye sockets and the lid-hidden eyeball texels, which mipmaps would otherwise bleed into a dark eye ring |
+| `hidden_masks.py` | per texel, finds cloth inside the body and skin with cloth lying on it; `seam_fill.py` refills those texels (and a 2.5 mm band beside them) from visible, lit surface, so pokes through snug cloth show no dark ring |
 | `run_jobs.py` | drains a job queue on one GPU; run one per GPU (2 and 3) |
 | `build_site.py` | frames to H.264 + VP9 video and posters, bakes to WebP, writes `static/data/*.json` |
 | `shot.py` | headless screenshots for checking the page |
 
-Order: `make_cases.py`, queue jobs, `run_jobs.py queue.json --gpu 2` and `--gpu 3`,
+Order: `make_cases.py`, queue jobs, `run_jobs.py queue.json --gpu 2` and `--gpu 3`
+(bakes: `bake_case.py`, then `--body-inner-only`, then `hidden_masks.py` and `seam_fill.py`),
 then `build_site.py gallery` and `build_site.py compare`.
 
 Sources (traced from `wrapped_sim/inputs_*`):

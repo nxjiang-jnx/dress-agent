@@ -18,7 +18,7 @@ def coverage(tris, w, h):
     return np.asarray(m) > 0
 
 
-def fill(tex_path, tris):
+def fill(tex_path, tris, lit_source=False):
     im = np.asarray(Image.open(tex_path).convert("RGB"))
     h, w = im.shape[:2]
     mask = coverage(tris, w, h)
@@ -27,6 +27,21 @@ def fill(tex_path, tris):
     core = ndimage.binary_erosion(mask, iterations=2)
     # tiny islands the erosion wiped out keep all their texels
     keep = core | (mask & ~ndimage.binary_dilation(core, iterations=3))
+    hidden = Path(tex_path).with_suffix(".hidden.npy")
+    if hidden.is_file():
+        # cloth inside the body (under a poke, from hidden_masks.py) bakes black;
+        # refill it from visible cloth so the poke keeps a clean edge
+        hid = np.load(hidden)
+        if hid.shape == (h, w):
+            # the few visible texels next to the contact are darkened by it too (in Cycles that
+            # is a sub-pixel line), so they are refilled as well, from farther out: ~2.5 mm
+            band = max(2, round(6 * w / 4096))
+            keep &= ~ndimage.binary_dilation(hid, iterations=band)
+            if lit_source:
+                # skin has one albedo, so brightness is lighting: never refill a poke from
+                # skin in the shadow of a sleeve or waistband
+                lum = im.astype(np.float32).mean(axis=2)
+                keep &= lum >= 0.55 * np.percentile(lum[mask], 90)
     _, (iy, ix) = ndimage.distance_transform_edt(~keep, return_indices=True)
     Image.fromarray(im[iy, ix]).save(tex_path)
 
@@ -104,7 +119,7 @@ def main(out):
         tris = np.load(out / f"{m['name']}.uv.npy")
         for key in ("tex", "tex_back"):
             if m.get(key):
-                fill(out / m[key], tris)
+                fill(out / m[key], tris, lit_source=(m["name"] == "body" and key == "tex"))
         if m["name"] == "body" and m.get("uv") == "bake":
             fix_eyes(out / m["tex"])
             fix_eyeballs(out / m["tex"])

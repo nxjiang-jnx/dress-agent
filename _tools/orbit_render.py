@@ -58,6 +58,7 @@ def parse():
                    help="reuse centre/distance from this json (shared framing)")
     p.add_argument("--frames", default="", help="comma list of frame indices to render")
     p.add_argument("--skip-existing", action="store_true")
+    p.add_argument("--layers", default="", help="keep only these garment layers (peel state)")
     p.add_argument("--cpu-denoise", action="store_true",
                    help="run OIDN on the CPU (Blender's default); the GPU run matches it to 1/255")
     return p.parse_args(raw)
@@ -120,6 +121,13 @@ def main():
     if not args.no_atlas:
         base.apply_source_atlases(objects, args.atlas_root)
     base.style_body(objects)
+    if args.layers:
+        keep = {x.strip().lower() for x in args.layers.split(",")}
+        drop = [o for o in objects if "body" not in o.name.lower()
+                and base.normalized_object_name(o.name).split("_")[0] not in keep]
+        objects = [o for o in objects if o not in drop]
+        for o in drop:
+            bpy.data.objects.remove(o, do_unlink=True)
     garments = [o for o in objects if "body" not in o.name.lower()]
 
     # framing from the dressed subject (body included), as the renderer does
