@@ -10,15 +10,19 @@ TOOLS = Path(__file__).resolve().parent
 W = Path("/data/nanxiangjiang/baselines/_wild")
 
 # display order: varied looks up front
-ORDER = ["experiment5", "newjeans5", "africa1", "experiment10", "dance2", "mountain3",
-         "newjeans4", "africa3", "experiment4", "dance4", "mountain5", "newjeans1",
-         "experiment8", "africa5", "dance1", "experiment3", "mountain2", "newjeans3",
-         "experiment6", "africa4", "dance3", "experiment1", "mountain1", "newjeans2",
+ORDER = ["experiment5", "newjeans5", "appendix5", "africa1", "experiment10", "dance2",
+         "mountain3", "appendix4", "newjeans4", "africa3", "experiment4", "appendix7",
+         "dance4", "mountain5", "newjeans1", "appendix1", "experiment8", "africa5",
+         "dance1", "appendix3", "experiment3", "mountain2", "newjeans3", "experiment6",
+         "africa4", "appendix2", "dance3", "experiment1", "mountain1", "newjeans2",
          "experiment9", "africa2", "dance5", "experiment2", "mountain4", "experiment11"]
 POSE = {"dance1", "dance2", "dance3", "dance4", "dance5", "experiment6", "experiment8",
         "experiment9", "experiment10", "mountain4", "mountain5"}
 DRESS = {"africa1", "africa3", "africa4", "africa5", "newjeans1"}
 BODY = {"experiment11"}
+# repose of these missed the first piece of the base layer as a collider; re-run in wsim/repose_fix
+REPOSE_FIX = {"mountain3", "mountain5"}
+WS = DA / "wrapped_sim"
 
 
 def source(case):
@@ -36,21 +40,35 @@ def source(case):
             glb = demo / f"repose/out/{case}/garment_final_pose.glb"
         else:
             glb = demo / "final/render/reposed/garment_final_pose.glb"
+    elif s == "appendix":
+        n = case[8:]
+        demo = DA / "demos_appendix" / n
+        glb = demo / "final/render/reposed/garment_final_pose.glb"
+        inputs = WS / "v1/inputs_appendix" / n
+        manifest = json.loads((inputs / "manifest.json").read_text())
+        # the GLB was draped in wrapped_sim from the latest design, so its patterns are there too
+        pattern = {"drape": str(WS / "v1/outputs_appendix" / n), "inputs": str(inputs)}
+        return s, demo, glb, inputs / "layers", [l["id"] for l in manifest["layers"]], pattern
     else:
         demo = DA / "demos_new" / s / case
         glb = demo / "final/render/reposed/garment_final_pose.glb"
+        if case in REPOSE_FIX:
+            glb = R / "wsim/repose_fix/out" / case / "garment_final_pose.glb"
     atlas = DA / f"wrapped_sim/inputs_{s}/{case}/layers"
     if case == "newjeans3":      # inputs_newjeans was regenerated; these match the GLB
         atlas = R / "atlas_shims/newjeans3/layers"
     manifest = json.loads((DA / f"wrapped_sim/inputs_{s}/{case}/manifest.json").read_text())
     layers = [l["id"] for l in manifest["layers"]]
-    return s, demo, glb, atlas, layers
+    pattern = {"final": str(demo / "final")}
+    if case == "experiment1":    # final/best holds an older design; the GLB is the wsim drape
+        pattern = {"drape": str(R / "wsim/outputs_expnew" / case), "inputs": str(WS / "inputs_expnew" / case)}
+    return s, demo, glb, atlas, layers, pattern
 
 
 def main():
     gallery = []
     for case in ORDER:
-        s, demo, glb, atlas, layers = source(case)
+        s, demo, glb, atlas, layers, pattern = source(case)
         photo = demo / "input.png"
         cut = None
         if s == "expnew" and int(case[10:]) >= 6:
@@ -68,7 +86,7 @@ def main():
             "id": case, "set": s, "glb": str(glb), "atlas_root": str(atlas),
             "photo": str(photo) if photo else None, "cutout": str(cut) if cut else None,
             "layers_json": str(demo / "layers.json"), "tags": tags, "chips": chips,
-            "states": [layers[:k + 1] for k in range(len(layers))],
+            "states": [layers[:k + 1] for k in range(len(layers))], "pattern": pattern,
         })
     methods = [
         {"id": "dresscode", "label": "DressCode", "color": "#70ad47"},

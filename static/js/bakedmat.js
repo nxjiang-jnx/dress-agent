@@ -36,19 +36,24 @@ DARK.colorSpace = THREE.SRGBColorSpace;
 DARK.needsUpdate = true;
 
 // front material on the mesh itself, back side as a child sharing its geometry.
-// Only the body's back side is pushed back: it is a closed surface, so its back faces meet
-// the front ones along every silhouette. Cloth layers lie millimetres apart (a lapel on its
-// jacket), and pushing their back faces back would let the covered layer show through.
+// The body's front gets the smallest push, so skin that grazes snug cloth along a seam does
+// not dot the seam (Cycles' many samples average it away); its back side goes much further,
+// since it is a closed surface whose back faces meet the front ones along every silhouette.
+// Cloth back faces get a small constant push (no slope term), which keeps the dark inside
+// from flickering through seam creases: cloth layers lie millimetres apart (a lapel on its
+// jacket), and a slope-scaled push would let the covered layer show through at grazing angles.
 export function bakedParts(mesh, isBody) {
-  mesh.material = new THREE.MeshBasicMaterial({ side: THREE.FrontSide });
+  mesh.material = new THREE.MeshBasicMaterial({
+    side: THREE.FrontSide, polygonOffset: !!isBody, polygonOffsetFactor: isBody ? 1 : 0, polygonOffsetUnits: isBody ? 1 : 0,
+  });
   const back = new THREE.Mesh(mesh.geometry, new THREE.ShaderMaterial({
     uniforms: { outer: { value: DARK }, inner: { value: DARK }, fade: { value: new THREE.Vector2(0.12, 0.42) } },
     vertexShader: vert,
     fragmentShader: frag,
     side: THREE.BackSide,
-    polygonOffset: !!isBody,
-    polygonOffsetFactor: isBody ? 4 : 0,
-    polygonOffsetUnits: isBody ? 8 : 0,
+    polygonOffset: true,
+    polygonOffsetFactor: isBody ? 32 : 1,
+    polygonOffsetUnits: 64,
   }));
   back.name = mesh.name + '_back';
   mesh.add(back);

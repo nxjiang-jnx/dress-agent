@@ -59,6 +59,15 @@
      "kind": "outer"
     }
    ],
+   "pattern": [
+    "static/gallery/experiment5/pattern/s0.webp",
+    "static/gallery/experiment5/pattern/s1.webp",
+    "static/gallery/experiment5/pattern/s2.webp"
+   ],
+   "pattern_size": [
+    640,
+    903
+   ],
    "model": {
     "dir": "static/gallery/experiment5/3d/",
     "mesh": "mesh.glb",
@@ -171,6 +180,14 @@
      "kind": "outer"
     }
    ],
+   "pattern": [
+    "static/gallery/newjeans5/pattern/s0.webp",
+    "static/gallery/newjeans5/pattern/s1.webp"
+   ],
+   "pattern_size": [
+    640,
+    850
+   ],
    "model": {
     "dir": "static/gallery/newjeans5/3d/",
     "mesh": "mesh.glb",
@@ -222,6 +239,134 @@
    }
   },
   {
+   "id": "appendix5",
+   "set": "appendix",
+   "title": "A white crew-neck tee and dark brown wide-leg pants, with a gray V-neck sweater vest layered over the tee and an open beige patterned coat on top.",
+   "layers": 3,
+   "tags": [
+    "layered"
+   ],
+   "chips": [
+    "3 layers"
+   ],
+   "photo": "static/gallery/appendix5/photo.webp",
+   "thumb": "static/gallery/appendix5/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/appendix5/turntable.mp4",
+   "poster": "static/gallery/appendix5/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "white crew-neck tee",
+      "dark brown wide-leg pants"
+     ],
+     "note": "top \u00b7 pants",
+     "kind": "base"
+    },
+    {
+     "names": [
+      "gray V-neck sweater vest"
+     ],
+     "note": "top",
+     "kind": "outer"
+    },
+    {
+     "names": [
+      "beige patterned coat"
+     ],
+     "note": "top, open front",
+     "kind": "outer"
+    }
+   ],
+   "pattern": [
+    "static/gallery/appendix5/pattern/s0.webp",
+    "static/gallery/appendix5/pattern/s1.webp",
+    "static/gallery/appendix5/pattern/s2.webp"
+   ],
+   "pattern_size": [
+    640,
+    781
+   ],
+   "model": {
+    "dir": "static/gallery/appendix5/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     },
+     {
+      "layers": [
+       "L0",
+       "L1"
+      ],
+      "tex": {
+       "body": [
+        "s1/body.webp",
+        "s1/body_in.webp"
+       ],
+       "l0_c0": [
+        "s1/l0_c0.webp",
+        "s1/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s1/l0_c1.webp",
+        "s1/l0_c1_in.webp"
+       ],
+       "l1": [
+        "s1/l1.webp",
+        "s1/l1_in.webp"
+       ]
+      }
+     },
+     {
+      "layers": [
+       "L0",
+       "L1",
+       "L2"
+      ],
+      "tex": {
+       "body": [
+        "s2/body.webp",
+        "s2/body_in.webp"
+       ],
+       "l0_c0": [
+        "s2/l0_c0.webp",
+        "s2/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s2/l0_c1.webp",
+        "s2/l0_c1_in.webp"
+       ],
+       "l1": [
+        "s2/l1.webp",
+        "s2/l1_in.webp"
+       ],
+       "l2": [
+        "s2/l2.webp",
+        "s2/l2_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
    "id": "africa1",
    "set": "africa",
    "title": "A sleeveless floral maxi dress with a V-neck, fitted waist, sash and long bordered hem.",
@@ -246,6 +391,13 @@
      "note": "dress",
      "kind": "base"
     }
+   ],
+   "pattern": [
+    "static/gallery/africa1/pattern/s0.webp"
+   ],
+   "pattern_size": [
+    640,
+    714
    ],
    "model": {
     "dir": "static/gallery/africa1/3d/",
@@ -303,6 +455,14 @@
      "note": "top, open front",
      "kind": "outer"
     }
+   ],
+   "pattern": [
+    "static/gallery/experiment10/pattern/s0.webp",
+    "static/gallery/experiment10/pattern/s1.webp"
+   ],
+   "pattern_size": [
+    640,
+    922
    ],
    "model": {
     "dir": "static/gallery/experiment10/3d/",
@@ -389,6 +549,14 @@
      "kind": "outer"
     }
    ],
+   "pattern": [
+    "static/gallery/dance2/pattern/s0.webp",
+    "static/gallery/dance2/pattern/s1.webp"
+   ],
+   "pattern_size": [
+    640,
+    810
+   ],
    "model": {
     "dir": "static/gallery/dance2/3d/",
     "mesh": "mesh.glb",
@@ -472,8 +640,107 @@
      "kind": "outer"
     }
    ],
+   "pattern": [
+    "static/gallery/mountain3/pattern/s0.webp",
+    "static/gallery/mountain3/pattern/s1.webp"
+   ],
+   "pattern_size": [
+    640,
+    703
+   ],
    "model": {
     "dir": "static/gallery/mountain3/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     },
+     {
+      "layers": [
+       "L0",
+       "L1"
+      ],
+      "tex": {
+       "body": [
+        "s1/body.webp",
+        "s1/body_in.webp"
+       ],
+       "l0_c0": [
+        "s1/l0_c0.webp",
+        "s1/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s1/l0_c1.webp",
+        "s1/l0_c1_in.webp"
+       ],
+       "l1": [
+        "s1/l1.webp",
+        "s1/l1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "appendix4",
+   "set": "appendix",
+   "title": "A white tee worn untucked over cream drawstring shorts beneath an open brown plaid overshirt.",
+   "layers": 2,
+   "tags": [
+    "layered"
+   ],
+   "chips": [
+    "2 layers"
+   ],
+   "photo": "static/gallery/appendix4/photo.webp",
+   "thumb": "static/gallery/appendix4/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/appendix4/turntable.mp4",
+   "poster": "static/gallery/appendix4/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "white tee",
+      "cream shorts"
+     ],
+     "note": "top \u00b7 pants",
+     "kind": "base"
+    },
+    {
+     "names": [
+      "brown plaid overshirt"
+     ],
+     "note": "top, open front",
+     "kind": "outer"
+    }
+   ],
+   "pattern": [
+    "static/gallery/appendix4/pattern/s0.webp",
+    "static/gallery/appendix4/pattern/s1.webp"
+   ],
+   "pattern_size": [
+    640,
+    537
+   ],
+   "model": {
+    "dir": "static/gallery/appendix4/3d/",
     "mesh": "mesh.glb",
     "states": [
      {
@@ -555,6 +822,14 @@
      "kind": "outer"
     }
    ],
+   "pattern": [
+    "static/gallery/newjeans4/pattern/s0.webp",
+    "static/gallery/newjeans4/pattern/s1.webp"
+   ],
+   "pattern_size": [
+    640,
+    669
+   ],
    "model": {
     "dir": "static/gallery/newjeans4/3d/",
     "mesh": "mesh.glb",
@@ -631,6 +906,13 @@
      "kind": "base"
     }
    ],
+   "pattern": [
+    "static/gallery/africa3/pattern/s0.webp"
+   ],
+   "pattern_size": [
+    640,
+    774
+   ],
    "model": {
     "dir": "static/gallery/africa3/3d/",
     "mesh": "mesh.glb",
@@ -686,6 +968,14 @@
      "kind": "outer"
     }
    ],
+   "pattern": [
+    "static/gallery/experiment4/pattern/s0.webp",
+    "static/gallery/experiment4/pattern/s1.webp"
+   ],
+   "pattern_size": [
+    640,
+    626
+   ],
    "model": {
     "dir": "static/gallery/experiment4/3d/",
     "mesh": "mesh.glb",
@@ -737,6 +1027,134 @@
    }
   },
   {
+   "id": "appendix7",
+   "set": "appendix",
+   "title": "A white crew-neck T-shirt and cream pants, with an olive knit sweater layered under an open dark brown jacket.",
+   "layers": 3,
+   "tags": [
+    "layered"
+   ],
+   "chips": [
+    "3 layers"
+   ],
+   "photo": "static/gallery/appendix7/photo.webp",
+   "thumb": "static/gallery/appendix7/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/appendix7/turntable.mp4",
+   "poster": "static/gallery/appendix7/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "white crew-neck T-shirt",
+      "cream pants"
+     ],
+     "note": "top \u00b7 pants",
+     "kind": "base"
+    },
+    {
+     "names": [
+      "olive knit sweater"
+     ],
+     "note": "top",
+     "kind": "outer"
+    },
+    {
+     "names": [
+      "dark brown jacket"
+     ],
+     "note": "top, open front",
+     "kind": "outer"
+    }
+   ],
+   "pattern": [
+    "static/gallery/appendix7/pattern/s0.webp",
+    "static/gallery/appendix7/pattern/s1.webp",
+    "static/gallery/appendix7/pattern/s2.webp"
+   ],
+   "pattern_size": [
+    640,
+    669
+   ],
+   "model": {
+    "dir": "static/gallery/appendix7/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     },
+     {
+      "layers": [
+       "L0",
+       "L1"
+      ],
+      "tex": {
+       "body": [
+        "s1/body.webp",
+        "s1/body_in.webp"
+       ],
+       "l0_c0": [
+        "s1/l0_c0.webp",
+        "s1/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s1/l0_c1.webp",
+        "s1/l0_c1_in.webp"
+       ],
+       "l1": [
+        "s1/l1.webp",
+        "s1/l1_in.webp"
+       ]
+      }
+     },
+     {
+      "layers": [
+       "L0",
+       "L1",
+       "L2"
+      ],
+      "tex": {
+       "body": [
+        "s2/body.webp",
+        "s2/body_in.webp"
+       ],
+       "l0_c0": [
+        "s2/l0_c0.webp",
+        "s2/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s2/l0_c1.webp",
+        "s2/l0_c1_in.webp"
+       ],
+       "l1": [
+        "s2/l1.webp",
+        "s2/l1_in.webp"
+       ],
+       "l2": [
+        "s2/l2.webp",
+        "s2/l2_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
    "id": "dance4",
    "set": "dance",
    "title": "A black camisole and charcoal maxi skirt worn under an open ivory cardigan.",
@@ -770,6 +1188,14 @@
      "note": "top, open front",
      "kind": "outer"
     }
+   ],
+   "pattern": [
+    "static/gallery/dance4/pattern/s0.webp",
+    "static/gallery/dance4/pattern/s1.webp"
+   ],
+   "pattern_size": [
+    640,
+    779
    ],
    "model": {
     "dir": "static/gallery/dance4/3d/",
@@ -856,6 +1282,14 @@
      "kind": "outer"
     }
    ],
+   "pattern": [
+    "static/gallery/mountain5/pattern/s0.webp",
+    "static/gallery/mountain5/pattern/s1.webp"
+   ],
+   "pattern_size": [
+    640,
+    781
+   ],
    "model": {
     "dir": "static/gallery/mountain5/3d/",
     "mesh": "mesh.glb",
@@ -940,6 +1374,14 @@
      "kind": "outer"
     }
    ],
+   "pattern": [
+    "static/gallery/newjeans1/pattern/s0.webp",
+    "static/gallery/newjeans1/pattern/s1.webp"
+   ],
+   "pattern_size": [
+    640,
+    712
+   ],
    "model": {
     "dir": "static/gallery/newjeans1/3d/",
     "mesh": "mesh.glb",
@@ -991,6 +1433,58 @@
    }
   },
   {
+   "id": "appendix1",
+   "set": "appendix",
+   "title": "A single cream sleeveless fit-and-flare mini dress.",
+   "layers": 1,
+   "tags": [],
+   "chips": [
+    "1 layer"
+   ],
+   "photo": "static/gallery/appendix1/photo.webp",
+   "thumb": "static/gallery/appendix1/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/appendix1/turntable.mp4",
+   "poster": "static/gallery/appendix1/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "cream sleeveless dress"
+     ],
+     "note": "dress",
+     "kind": "base"
+    }
+   ],
+   "pattern": [
+    "static/gallery/appendix1/pattern/s0.webp"
+   ],
+   "pattern_size": [
+    640,
+    628
+   ],
+   "model": {
+    "dir": "static/gallery/appendix1/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
+       "l0": [
+        "s0/l0.webp",
+        "s0/l0_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
    "id": "experiment8",
    "set": "expnew",
    "title": "A multicolor striped short-sleeve t-shirt worn over black cargo pants.",
@@ -1016,6 +1510,13 @@
      "note": "top \u00b7 pants",
      "kind": "base"
     }
+   ],
+   "pattern": [
+    "static/gallery/experiment8/pattern/s0.webp"
+   ],
+   "pattern_size": [
+    590,
+    966
    ],
    "model": {
     "dir": "static/gallery/experiment8/3d/",
@@ -1069,6 +1570,13 @@
      "kind": "base"
     }
    ],
+   "pattern": [
+    "static/gallery/africa5/pattern/s0.webp"
+   ],
+   "pattern_size": [
+    546,
+    947
+   ],
    "model": {
     "dir": "static/gallery/africa5/3d/",
     "mesh": "mesh.glb",
@@ -1118,6 +1626,13 @@
      "kind": "base"
     }
    ],
+   "pattern": [
+    "static/gallery/dance1/pattern/s0.webp"
+   ],
+   "pattern_size": [
+    640,
+    467
+   ],
    "model": {
     "dir": "static/gallery/dance1/3d/",
     "mesh": "mesh.glb",
@@ -1138,6 +1653,97 @@
        "l0_c1": [
         "s0/l0_c1.webp",
         "s0/l0_c1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "appendix3",
+   "set": "appendix",
+   "title": "A black Nirvana graphic tee layered over a white long-sleeve shirt and worn untucked with light-wash wide-leg jeans.",
+   "layers": 2,
+   "tags": [
+    "layered"
+   ],
+   "chips": [
+    "2 layers"
+   ],
+   "photo": "static/gallery/appendix3/photo.webp",
+   "thumb": "static/gallery/appendix3/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/appendix3/turntable.mp4",
+   "poster": "static/gallery/appendix3/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "white long-sleeve shirt",
+      "light-wash wide-leg jeans"
+     ],
+     "note": "top \u00b7 pants",
+     "kind": "base"
+    },
+    {
+     "names": [
+      "black Nirvana graphic tee"
+     ],
+     "note": "top",
+     "kind": "outer"
+    }
+   ],
+   "pattern": [
+    "static/gallery/appendix3/pattern/s0.webp",
+    "static/gallery/appendix3/pattern/s1.webp"
+   ],
+   "pattern_size": [
+    640,
+    724
+   ],
+   "model": {
+    "dir": "static/gallery/appendix3/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     },
+     {
+      "layers": [
+       "L0",
+       "L1"
+      ],
+      "tex": {
+       "body": [
+        "s1/body.webp",
+        "s1/body_in.webp"
+       ],
+       "l0_c0": [
+        "s1/l0_c0.webp",
+        "s1/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s1/l0_c1.webp",
+        "s1/l0_c1_in.webp"
+       ],
+       "l1": [
+        "s1/l1.webp",
+        "s1/l1_in.webp"
        ]
       }
      }
@@ -1176,6 +1782,14 @@
      "note": "top",
      "kind": "outer"
     }
+   ],
+   "pattern": [
+    "static/gallery/experiment3/pattern/s0.webp",
+    "static/gallery/experiment3/pattern/s1.webp"
+   ],
+   "pattern_size": [
+    574,
+    966
    ],
    "model": {
     "dir": "static/gallery/experiment3/3d/",
@@ -1260,6 +1874,14 @@
      "kind": "outer"
     }
    ],
+   "pattern": [
+    "static/gallery/mountain2/pattern/s0.webp",
+    "static/gallery/mountain2/pattern/s1.webp"
+   ],
+   "pattern_size": [
+    640,
+    879
+   ],
    "model": {
     "dir": "static/gallery/mountain2/3d/",
     "mesh": "mesh.glb",
@@ -1343,6 +1965,14 @@
      "kind": "outer"
     }
    ],
+   "pattern": [
+    "static/gallery/newjeans3/pattern/s0.webp",
+    "static/gallery/newjeans3/pattern/s1.webp"
+   ],
+   "pattern_size": [
+    640,
+    613
+   ],
    "model": {
     "dir": "static/gallery/newjeans3/3d/",
     "mesh": "mesh.glb",
@@ -1420,6 +2050,13 @@
      "kind": "base"
     }
    ],
+   "pattern": [
+    "static/gallery/experiment6/pattern/s0.webp"
+   ],
+   "pattern_size": [
+    457,
+    964
+   ],
    "model": {
     "dir": "static/gallery/experiment6/3d/",
     "mesh": "mesh.glb",
@@ -1472,8 +2109,67 @@
      "kind": "base"
     }
    ],
+   "pattern": [
+    "static/gallery/africa4/pattern/s0.webp"
+   ],
+   "pattern_size": [
+    640,
+    776
+   ],
    "model": {
     "dir": "static/gallery/africa4/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
+       "l0": [
+        "s0/l0.webp",
+        "s0/l0_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "appendix2",
+   "set": "appendix",
+   "title": "A sleeveless black patterned short jumpsuit worn alone.",
+   "layers": 1,
+   "tags": [],
+   "chips": [
+    "1 layer"
+   ],
+   "photo": "static/gallery/appendix2/photo.webp",
+   "thumb": "static/gallery/appendix2/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/appendix2/turntable.mp4",
+   "poster": "static/gallery/appendix2/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "black patterned short jumpsuit"
+     ],
+     "note": "jumpsuit",
+     "kind": "base"
+    }
+   ],
+   "pattern": [
+    "static/gallery/appendix2/pattern/s0.webp"
+   ],
+   "pattern_size": [
+    640,
+    777
+   ],
+   "model": {
+    "dir": "static/gallery/appendix2/3d/",
     "mesh": "mesh.glb",
     "states": [
      {
@@ -1520,6 +2216,13 @@
      "note": "top \u00b7 pants",
      "kind": "base"
     }
+   ],
+   "pattern": [
+    "static/gallery/dance3/pattern/s0.webp"
+   ],
+   "pattern_size": [
+    640,
+    839
    ],
    "model": {
     "dir": "static/gallery/dance3/3d/",
@@ -1571,6 +2274,13 @@
      "kind": "base"
     }
    ],
+   "pattern": [
+    "static/gallery/experiment1/pattern/s0.webp"
+   ],
+   "pattern_size": [
+    640,
+    648
+   ],
    "model": {
     "dir": "static/gallery/experiment1/3d/",
     "mesh": "mesh.glb",
@@ -1621,6 +2331,13 @@
      "kind": "base"
     }
    ],
+   "pattern": [
+    "static/gallery/mountain1/pattern/s0.webp"
+   ],
+   "pattern_size": [
+    608,
+    942
+   ],
    "model": {
     "dir": "static/gallery/mountain1/3d/",
     "mesh": "mesh.glb",
@@ -1670,6 +2387,13 @@
      "note": "top \u00b7 skirt",
      "kind": "base"
     }
+   ],
+   "pattern": [
+    "static/gallery/newjeans2/pattern/s0.webp"
+   ],
+   "pattern_size": [
+    640,
+    859
    ],
    "model": {
     "dir": "static/gallery/newjeans2/3d/",
@@ -1724,6 +2448,13 @@
      "kind": "base"
     }
    ],
+   "pattern": [
+    "static/gallery/experiment9/pattern/s0.webp"
+   ],
+   "pattern_size": [
+    640,
+    480
+   ],
    "model": {
     "dir": "static/gallery/experiment9/3d/",
     "mesh": "mesh.glb",
@@ -1773,6 +2504,13 @@
      "note": "top \u00b7 pants",
      "kind": "base"
     }
+   ],
+   "pattern": [
+    "static/gallery/africa2/pattern/s0.webp"
+   ],
+   "pattern_size": [
+    640,
+    866
    ],
    "model": {
     "dir": "static/gallery/africa2/3d/",
@@ -1827,6 +2565,13 @@
      "kind": "base"
     }
    ],
+   "pattern": [
+    "static/gallery/dance5/pattern/s0.webp"
+   ],
+   "pattern_size": [
+    640,
+    776
+   ],
    "model": {
     "dir": "static/gallery/dance5/3d/",
     "mesh": "mesh.glb",
@@ -1876,6 +2621,13 @@
      "note": "top \u00b7 pants",
      "kind": "base"
     }
+   ],
+   "pattern": [
+    "static/gallery/experiment2/pattern/s0.webp"
+   ],
+   "pattern_size": [
+    640,
+    790
    ],
    "model": {
     "dir": "static/gallery/experiment2/3d/",
@@ -1930,6 +2682,13 @@
      "kind": "base"
     }
    ],
+   "pattern": [
+    "static/gallery/mountain4/pattern/s0.webp"
+   ],
+   "pattern_size": [
+    640,
+    852
+   ],
    "model": {
     "dir": "static/gallery/mountain4/3d/",
     "mesh": "mesh.glb",
@@ -1982,6 +2741,13 @@
      "note": "top, tucked in \u00b7 pants",
      "kind": "base"
     }
+   ],
+   "pattern": [
+    "static/gallery/experiment11/pattern/s0.webp"
+   ],
+   "pattern_size": [
+    611,
+    956
    ],
    "model": {
     "dir": "static/gallery/experiment11/3d/",

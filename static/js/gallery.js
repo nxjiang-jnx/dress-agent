@@ -1,9 +1,10 @@
-// Gallery: real-time 3D stage (Cycles lighting baked per texel) + turntable wall.
+// Interactive viewer (Cycles lighting baked per texel) with the input photo and sewing pattern
+// beside it and the layer buttons under it, plus the turntable wall that picks the result.
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
-import { bakedParts, setBaked } from './bakedmat.js?v=20260923g';
+import { bakedParts, setBaked } from './bakedmat.js?v=20260923l';
 
 const $ = (s, r = document) => r.querySelector(s);
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -24,12 +25,12 @@ class Stage {
     r.setPixelRatio(Math.min(devicePixelRatio, 2));
     r.outputColorSpace = THREE.SRGBColorSpace;
     r.toneMapping = THREE.NoToneMapping;      // colours are already display-referred
-    r.setClearColor(0xffffff, 1);
+    r.setClearColor(0xf0f0f0, 1);           // CHORD's viewer gray
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(30, 1, 0.01, 60);
     const c = this.controls = new OrbitControls(this.camera, this.canvas);
     Object.assign(c, {
-      enableDamping: true, dampingFactor: 0.085, enablePan: false, rotateSpeed: 0.8, zoomSpeed: 0.9,
+      enableDamping: true, dampingFactor: 0.085, enablePan: true, screenSpacePanning: true, rotateSpeed: 0.8, zoomSpeed: 0.9,
       autoRotate: !REDUCED, autoRotateSpeed: ROTATE_SPEED, minPolarAngle: 0.06, maxPolarAngle: Math.PI - 0.06,
     });
     this.wantRotate = !REDUCED;
@@ -52,16 +53,7 @@ class Stage {
     new IntersectionObserver(e => { this.inView = e[0].isIntersecting; this.run(); }, { threshold: 0.02 }).observe(view);
     document.addEventListener('visibilitychange', () => this.run());
     this.canvas.addEventListener('dblclick', () => this.resetView());
-    // the wheel zooms only once the viewer is engaged, so page scrolling never gets stuck;
-    // pinch (ctrl + wheel) always zooms
-    this.engaged = false;
-    c.enableZoom = false;
-    view.addEventListener('pointerdown', () => { this.engaged = true; c.enableZoom = true; view.classList.add('is-engaged'); });
-    view.addEventListener('pointerleave', () => { this.engaged = false; c.enableZoom = false; view.classList.remove('is-engaged'); });
-    view.addEventListener('wheel', e => {
-      c.enableZoom = this.engaged || e.ctrlKey;
-      if (c.enableZoom) { this.userStart(); this.userEnd(); }
-    }, { capture: true, passive: true });
+    this.canvas.addEventListener('contextmenu', e => e.preventDefault());
     this.resize();
   }
 
@@ -93,7 +85,6 @@ class Stage {
     this.dragging = true;
     this.tween = null;
     clearTimeout(this.resumeTimer);
-    $('#stage-hint').classList.add('is-faded');
   }
 
   userEnd() {
@@ -119,7 +110,8 @@ class Stage {
     }, undefined, rej));
   }
 
-  async load(item, progress) {
+  // `ready` (the photo and pattern stills) is awaited too, so everything swaps in one frame
+  async load(item, progress, ready = Promise.resolve()) {
     const token = ++this.token;
     const m = item.model;
     const base = m.dir;
@@ -133,6 +125,7 @@ class Stage {
       this.gltf.loadAsync(base + m.mesh).then(g => (tick(), g)),
       ...urls.map(u => this.loadTex(base + u).then(t => (tick(), t))),
     ]);
+    await ready;
     if (token !== this.token) { texs.forEach(t => t.dispose()); return false; }
     const texMap = new Map(urls.map((u, i) => [u, texs[i]]));
     const root = gltf.scene;
@@ -234,26 +227,29 @@ class Stage {
   }
 
   placeAt(az, el, d) {
-    const c = this.fit.center;
+    const c = this.controls.target;
     this.camera.position.set(c.x + d * Math.cos(el) * Math.sin(az), c.y + d * Math.sin(el), c.z + d * Math.cos(el) * Math.cos(az));
     this.camera.lookAt(c);
   }
 
   resetView(ms = 900) {
     if (!this.fit) return;
-    const off = this.camera.position.clone().sub(this.fit.center);
+    const off = this.camera.position.clone().sub(this.controls.target);
     const s = new THREE.Spherical().setFromVector3(off);
     // shortest way round to the front
     let az = s.theta % (2 * Math.PI);
     if (az > Math.PI) az -= 2 * Math.PI;
     if (az < -Math.PI) az += 2 * Math.PI;
-    this.tween = { t0: performance.now(), ms, from: { az, el: Math.PI / 2 - s.phi, d: s.radius }, to: { az: 0, el: ELEV, d: this.fit.dist } };
+    // a pan moves the target; the reset glides it back to the centre
+    this.tween = { t0: performance.now(), ms, from: { az, el: Math.PI / 2 - s.phi, d: s.radius }, to: { az: 0, el: ELEV, d: this.fit.dist },
+                   target: this.controls.target.clone() };
   }
 
   stepTween() {
     const tw = this.tween;
     const k = Math.min(1, (performance.now() - tw.t0) / tw.ms), e = ease(k);
     const lerp = key => tw.from[key] + (tw.to[key] - tw.from[key]) * e;
+    this.controls.target.lerpVectors(tw.target, this.fit.center, e);
     this.placeAt(lerp('az'), lerp('el'), lerp('d'));
     if (k >= 1) this.tween = null;
   }
@@ -275,9 +271,17 @@ async function main() {
     view.querySelector('canvas').replaceWith(v);
     view.classList.add('is-fallback');
     stage = {
-      fallback: v, onChange() {}, resize() {},
-      load(it) { v.src = it.video.replace(/\.mp4$/, VIDEO_EXT); v.play().catch(() => {}); return Promise.resolve(true); },
-      setState() {}, setRotate() {}, setBody() {}, resetView() {},
+      fallback: v, model: null, onChange() {}, resize() {},
+      async load(it, progress, ready) {
+        await ready;
+        v.src = it.video.replace(/\.mp4$/, VIDEO_EXT);
+        v.play().catch(() => {});
+        this.model = { item: it, state: it.model.states.length - 1 };
+        return true;
+      },
+      // no 3D to peel, but the pattern still follows the layer list
+      setState(k) { if (this.model) { this.model.state = k; this.onChange(this.model); } },
+      setRotate() {}, setBody() {}, resetView() {},
     };
   }
   const loading = $('#stage-loading'), ring = $('#stage-ring');
@@ -318,34 +322,45 @@ async function main() {
 
   const order = items.map(it => it.id);
 
-  // ---- side panel ----
-  const plan = $('#stage-plan');
+  // ---- photo and pattern beside the viewer, layer buttons under it ----
+  const layers = $('#stage-layers'), pattern = $('#stage-pattern');
+  const still = src => {
+    const img = new Image();
+    img.decoding = 'async';
+    img.src = src;
+    return img.decode().catch(() => {}).then(() => img);
+  };
   const renderPlan = model => {
-    const it = model.item, k = model.state, peel = it.model.states.length > 1;
-    plan.querySelectorAll('li').forEach((li, i) => {
-      li.classList.toggle('is-off', peel && i > k);
-      li.classList.toggle('is-static', !peel);
-    });
-    $('#stage-plan-note').textContent = peel ? 'Click a layer to peel the outfit down to it.' : '';
+    const k = model.state;
+    layers.querySelectorAll('button').forEach((b, i) => b.classList.toggle('is-primary', i === k));
+    pattern.querySelectorAll('img').forEach((img, i) => img.classList.toggle('is-on', i === k));
   };
   stage.onChange = renderPlan;
 
-  function fillSide(it) {
-    const img = $('#stage-photo');
-    img.style.opacity = 0;
-    img.onload = () => { img.style.opacity = 1; };
-    img.src = it.photo;
-    img.classList.toggle('is-cutout', !!it.cutout);
+  // swap in the photo, the layer buttons and the pattern stills of a loaded result
+  function commitSide(it, photo, stills) {
+    photo.id = 'stage-photo';
+    photo.alt = 'Input photo';
+    photo.classList.toggle('is-cutout', !!it.cutout);
+    $('#stage-photo').replaceWith(photo);
     $('#stage-title').textContent = it.title;
-    $('#stage-title-m').textContent = it.title;
-    plan.innerHTML = it.plan.map((p, i) => `
-      <li data-k="${i}">
-        <span class="plan__tag">L${i + 1}</span>
-        <span class="plan__names">${p.names.map(n => `<b>${n}</b>`).join('<br>')}</span>
-      </li>`).join('');
-    plan.querySelectorAll('li').forEach(li => li.addEventListener('click', () => {
-      if (it.model.states.length > 1) stage.setState(Math.min(+li.dataset.k, it.model.states.length - 1));
+    const peel = it.model.states.length > 1;
+    const label = (p, i) => {
+      const t = p.names.join(' + ');
+      return (i ? '+ ' : '') + t[0].toUpperCase() + t.slice(1);
+    };
+    layers.replaceChildren(...it.plan.map((p, i) => {
+      const b = document.createElement('button');
+      b.className = 'button is-light comparison-scene-button' + (peel ? '' : ' is-static');
+      b.textContent = label(p, i);
+      if (peel) {
+        b.title = i ? `Add layer ${i + 1}` : 'Innermost layer only';
+        b.addEventListener('click', () => stage.setState(Math.min(i, it.model.states.length - 1)));
+      }
+      return b;
     }));
+    stills.forEach((img, i) => { img.alt = i === stills.length - 1 ? 'Sewing pattern' : ''; });
+    pattern.replaceChildren(...stills);
   }
 
   async function select(id, user) {
@@ -353,21 +368,24 @@ async function main() {
     if (!it || current === id) return;
     current = id;
     cards.forEach((c, k) => c.classList.toggle('is-current', k === id));
-    fillSide(it);
     if (user) {
       history.replaceState(null, '', `#${id}`);
-      const r = view.getBoundingClientRect();
-      if (r.top < 40 || r.bottom > innerHeight + 40) $('#gallery-stage').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'center' });
+      const r = $('#gallery-stage').getBoundingClientRect();
+      if (r.top < 0 || r.bottom > innerHeight) $('#viewer').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
     }
-    view.classList.add('is-switching');
     clearTimeout(loadTimer);
     ring.style.strokeDashoffset = 106.8;
     loadTimer = setTimeout(() => loading.classList.add('is-on'), 250);
-    const ok = await stage.load(it, p => { ring.style.strokeDashoffset = 106.8 * (1 - p); }).catch(e => { console.error(e); return false; });
+    // the old result stays up until the new model, photo and patterns are all ready
+    const side = Promise.all([still(it.photo), Promise.all(it.pattern.map(still))]);
+    const ok = await stage.load(it, p => { ring.style.strokeDashoffset = 106.8 * (1 - p); }, side)
+      .catch(e => { console.error(e); return false; });
     if (!ok || current !== id) return;
+    const [photo, stills] = await side;
+    commitSide(it, photo, stills);
+    renderPlan(stage.model || { state: it.model.states.length - 1 });
     clearTimeout(loadTimer);
     loading.classList.remove('is-on');
-    requestAnimationFrame(() => view.classList.remove('is-switching'));
   }
 
   // ---- tools ----
@@ -376,7 +394,7 @@ async function main() {
   const toggleRotate = () => { const on = tRot.getAttribute('aria-pressed') !== 'true'; tRot.setAttribute('aria-pressed', String(on)); stage.setRotate(on); };
   const toggleBody = () => { const on = tBody.getAttribute('aria-pressed') !== 'true'; tBody.setAttribute('aria-pressed', String(on)); stage.setBody(on); };
   const full = () => {
-    const el = $('#gallery-stage');
+    const el = view;
     if (document.fullscreenElement) document.exitFullscreen();
     else (el.requestFullscreen || el.webkitRequestFullscreen)?.call(el);
   };
@@ -407,7 +425,7 @@ async function main() {
 
   const hash = decodeURIComponent(location.hash.slice(1));
   select(byId.has(hash) ? hash : byId.has(data.default) ? data.default : items[0].id, false);
-  if (byId.has(hash)) setTimeout(() => $('#gallery-stage').scrollIntoView({ block: 'center' }), 300);
+  if (byId.has(hash)) setTimeout(() => $('#viewer').scrollIntoView({ block: 'start' }), 300);
 }
 
 main();

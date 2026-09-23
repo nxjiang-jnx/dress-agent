@@ -80,7 +80,13 @@ def photo(src, out, height, cutout=False):
     im.save(out, quality=88, method=6)
 
 
+def fresh(src, dst):
+    return dst.is_file() and dst.stat().st_mtime > Path(src).stat().st_mtime
+
+
 def to_webp(src, dst, q):
+    if fresh(src, dst):
+        return
     dst.parent.mkdir(parents=True, exist_ok=True)
     Image.open(src).convert("RGB").save(dst, quality=q, method=6)
 
@@ -123,7 +129,23 @@ def plan_rows(layers_json, meshes):
 
 def ready(c):
     bake = RENDERS / "bake" / c["id"]
-    return all((bake / f"s{k}" / "bake.json").is_file() for k in range(len(c["states"])))
+    return (all((bake / f"s{k}" / "seam.done").is_file() for k in range(len(c["states"])))
+            and (RENDERS / "patterns" / c["id"] / "done").is_file())
+
+
+def patterns(cid, n, out, width=640):
+    """Sewing-pattern stills, one per peel state; they share one crop, so they overlay exactly."""
+    urls, size = [], None
+    for k in range(n):
+        im = Image.open(RENDERS / "patterns" / cid / f"s{k}.png").convert("RGBA")
+        if im.size[0] > width:
+            im = im.resize((width, round(im.size[1] * width / im.size[0])), Image.LANCZOS)
+        dst = out / "pattern" / f"s{k}.webp"
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        im.save(dst, quality=90, method=6)
+        urls.append(f"static/gallery/{cid}/pattern/s{k}.webp")
+        size = im.size
+    return urls, list(size)
 
 
 def gallery(only=None):
@@ -152,7 +174,8 @@ def gallery(only=None):
             for m in meta["meshes"]:
                 q = 84 if m["name"] == "body" else 90
                 to_webp(sdir / m["tex"], out / "3d" / f"s{k}" / f"{m['name']}.webp", q)
-                if m["name"] == "body":   # phones get a 2K skin
+                if m["name"] == "body" and not fresh(sdir / m["tex"], out / "3d" / f"s{k}" / "body_m.webp"):
+                    # phones get a 2K skin
                     im = Image.open(sdir / m["tex"]).convert("RGB")
                     im.resize((im.size[0] // 2, im.size[1] // 2), Image.LANCZOS).save(
                         out / "3d" / f"s{k}" / "body_m.webp", quality=84, method=6)
@@ -163,6 +186,7 @@ def gallery(only=None):
                     tex[m["name"]] = f"s{k}/{m['name']}.webp"
             states.append({"layers": keep, "tex": tex})
         shutil.copy(bake / f"s{len(c['states']) - 1}" / "mesh.glb", out / "3d" / "mesh.glb")
+        pattern, pattern_size = patterns(cid, len(c["states"]), out)
         rows, summary = plan_rows(c["layers_json"], None)
         n = len(rows)
         items.append({
@@ -171,7 +195,7 @@ def gallery(only=None):
             "photo": f"static/gallery/{cid}/photo.webp", "thumb": f"static/gallery/{cid}/thumb.webp",
             "cutout": bool(c.get("cutout")),
             "video": f"static/gallery/{cid}/turntable.mp4", "poster": f"static/gallery/{cid}/turntable.webp",
-            "plan": rows,
+            "plan": rows, "pattern": pattern, "pattern_size": pattern_size,
             "model": {"dir": f"static/gallery/{cid}/3d/", "mesh": "mesh.glb", "states": states},
         })
         print("gallery", cid, flush=True)
