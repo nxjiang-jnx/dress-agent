@@ -1,0 +1,112 @@
+{
+ "dir": "static/compare/",
+ "duration": 7.5,
+ "input_color": "#d8514b",
+ "methods": [
+  {
+   "id": "dresscode",
+   "label": "DressCode",
+   "color": "#70ad47"
+  },
+  {
+   "id": "chatgarment",
+   "label": "ChatGarment",
+   "color": "#f7c56e"
+  },
+  {
+   "id": "isp",
+   "label": "ISP",
+   "color": "#69addc"
+  },
+  {
+   "id": "garmentrecovery",
+   "label": "GarmentRecovery",
+   "color": "#4c74b1"
+  },
+  {
+   "id": "ours",
+   "label": "Ours",
+   "color": "#fa9d57"
+  }
+ ],
+ "rows": [
+  {
+   "id": "dressed",
+   "label": "Dressed"
+  },
+  {
+   "id": "garment",
+   "label": "Garments only"
+  }
+ ],
+ "groups": {
+  "layered": [
+   {
+    "id": "experiment1",
+    "label": "Tee & shorts",
+    "input": "static/compare/experiment1/input.webp",
+    "thumb": "static/compare/experiment1/thumb.webp"
+   },
+   {
+    "id": "experiment2",
+    "label": "Jersey",
+    "input": "static/compare/experiment2/input.webp",
+    "thumb": "static/compare/experiment2/thumb.webp"
+   },
+   {
+    "id": "experiment3",
+    "label": "Layered tees",
+    "input": "static/compare/experiment3/input.webp",
+    "thumb": "static/compare/experiment3/thumb.webp"
+   },
+   {
+    "id": "experiment4",
+    "label": "Cropped blazer",
+    "input": "static/compare/experiment4/input.webp",
+    "thumb": "static/compare/experiment4/thumb.webp"
+   },
+   {
+    "id": "experiment5",
+    "label": "Vest & jacket",
+    "input": "static/compare/experiment5/input.webp",
+    "thumb": "static/compare/experiment5/thumb.webp"
+   }
+  ],
+  "poses": [
+   {
+    "id": "experiment6",
+    "label": "Crouch",
+    "input": "static/compare/experiment6/input.webp",
+    "thumb": "static/compare/experiment6/thumb.webp"
+   },
+   {
+    "id": "experiment8",
+    "label": "Sitting",
+    "input": "static/compare/experiment8/input.webp",
+    "thumb": "static/compare/experiment8/thumb.webp"
+   },
+   {
+    "id": "experiment9",
+    "label": "Squat",
+    "input": "static/compare/experiment9/input.webp",
+    "thumb": "static/compare/experiment9/thumb.webp"
+   },
+   {
+    "id": "experiment10",
+    "label": "Kneeling",
+    "input": "static/compare/experiment10/input.webp",
+    "thumb": "static/compare/experiment10/thumb.webp"
+   },
+   {
+    "id": "experiment11",
+    "label": "Plus size",
+    "input": "static/compare/experiment11/input.webp",
+    "thumb": "static/compare/experiment11/thumb.webp"
+   }
+  ]
+ },
+ "default": {
+  "layered": "experiment4",
+  "poses": "experiment10"
+ }
+}

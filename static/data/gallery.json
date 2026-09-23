@@ -1,0 +1,1881 @@
+{
+ "default": "experiment5",
+ "filters": [
+  {
+   "id": "all",
+   "label": "All"
+  },
+  {
+   "id": "layered",
+   "label": "Multi-layer"
+  },
+  {
+   "id": "pose",
+   "label": "Dynamic poses"
+  },
+  {
+   "id": "dress",
+   "label": "Dresses & robes"
+  }
+ ],
+ "items": [
+  {
+   "id": "experiment5",
+   "set": "expnew",
+   "title": "White tee under an argyle sweater vest, olive pants, and an open navy jacket.",
+   "layers": 3,
+   "tags": [
+    "layered"
+   ],
+   "chips": [
+    "3 layers"
+   ],
+   "photo": "static/gallery/experiment5/photo.webp",
+   "thumb": "static/gallery/experiment5/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/experiment5/turntable.mp4",
+   "poster": "static/gallery/experiment5/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "white tee",
+      "olive pants"
+     ],
+     "note": "top \u00b7 pants",
+     "kind": "base"
+    },
+    {
+     "names": [
+      "argyle sweater vest"
+     ],
+     "note": "top",
+     "kind": "outer"
+    },
+    {
+     "names": [
+      "navy jacket"
+     ],
+     "note": "top, open front",
+     "kind": "outer"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/experiment5/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     },
+     {
+      "layers": [
+       "L0",
+       "L1"
+      ],
+      "tex": {
+       "body": "s1/body.webp",
+       "l0_c0": [
+        "s1/l0_c0.webp",
+        "s1/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s1/l0_c1.webp",
+        "s1/l0_c1_in.webp"
+       ],
+       "l1": [
+        "s1/l1.webp",
+        "s1/l1_in.webp"
+       ]
+      }
+     },
+     {
+      "layers": [
+       "L0",
+       "L1",
+       "L2"
+      ],
+      "tex": {
+       "body": "s2/body.webp",
+       "l0_c0": [
+        "s2/l0_c0.webp",
+        "s2/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s2/l0_c1.webp",
+        "s2/l0_c1_in.webp"
+       ],
+       "l1": [
+        "s2/l1.webp",
+        "s2/l1_in.webp"
+       ],
+       "l2": [
+        "s2/l2.webp",
+        "s2/l2_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "newjeans5",
+   "set": "newjeans",
+   "title": "A red-and-blue striped tee tucked into beige wide-leg pants under an open brown bomber jacket.",
+   "layers": 2,
+   "tags": [
+    "layered"
+   ],
+   "chips": [
+    "2 layers"
+   ],
+   "photo": "static/gallery/newjeans5/photo.webp",
+   "thumb": "static/gallery/newjeans5/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/newjeans5/turntable.mp4",
+   "poster": "static/gallery/newjeans5/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "red-and-blue striped tee",
+      "beige wide-leg pants"
+     ],
+     "note": "top, tucked in \u00b7 pants",
+     "kind": "base"
+    },
+    {
+     "names": [
+      "brown bomber jacket"
+     ],
+     "note": "top, open front",
+     "kind": "outer"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/newjeans5/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     },
+     {
+      "layers": [
+       "L0",
+       "L1"
+      ],
+      "tex": {
+       "body": "s1/body.webp",
+       "l0_c0": [
+        "s1/l0_c0.webp",
+        "s1/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s1/l0_c1.webp",
+        "s1/l0_c1_in.webp"
+       ],
+       "l1": [
+        "s1/l1.webp",
+        "s1/l1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "africa1",
+   "set": "africa",
+   "title": "A sleeveless floral maxi dress with a V-neck, fitted waist, sash and long bordered hem.",
+   "layers": 1,
+   "tags": [
+    "dress"
+   ],
+   "chips": [
+    "1 layer",
+    "Dress"
+   ],
+   "photo": "static/gallery/africa1/photo.webp",
+   "thumb": "static/gallery/africa1/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/africa1/turntable.mp4",
+   "poster": "static/gallery/africa1/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "floral maxi dress"
+     ],
+     "note": "dress",
+     "kind": "base"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/africa1/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0": [
+        "s0/l0.webp",
+        "s0/l0_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "experiment10",
+   "set": "expnew",
+   "title": "A black cropped tank top and olive green pants under an open red bomber jacket.",
+   "layers": 2,
+   "tags": [
+    "layered",
+    "pose"
+   ],
+   "chips": [
+    "2 layers",
+    "Dynamic pose"
+   ],
+   "photo": "static/gallery/experiment10/photo.webp",
+   "thumb": "static/gallery/experiment10/thumb.webp",
+   "cutout": true,
+   "video": "static/gallery/experiment10/turntable.mp4",
+   "poster": "static/gallery/experiment10/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "black cropped tank top",
+      "olive green pants"
+     ],
+     "note": "top \u00b7 pants",
+     "kind": "base"
+    },
+    {
+     "names": [
+      "red bomber jacket"
+     ],
+     "note": "top, open front",
+     "kind": "outer"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/experiment10/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     },
+     {
+      "layers": [
+       "L0",
+       "L1"
+      ],
+      "tex": {
+       "body": "s1/body.webp",
+       "l0_c0": [
+        "s1/l0_c0.webp",
+        "s1/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s1/l0_c1.webp",
+        "s1/l0_c1_in.webp"
+       ],
+       "l1": [
+        "s1/l1.webp",
+        "s1/l1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "dance2",
+   "set": "dance",
+   "title": "A black t-shirt and black wide-leg pants are worn under an open charcoal plaid overshirt.",
+   "layers": 2,
+   "tags": [
+    "layered",
+    "pose"
+   ],
+   "chips": [
+    "2 layers",
+    "Dynamic pose"
+   ],
+   "photo": "static/gallery/dance2/photo.webp",
+   "thumb": "static/gallery/dance2/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/dance2/turntable.mp4",
+   "poster": "static/gallery/dance2/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "black t-shirt",
+      "black wide-leg pants"
+     ],
+     "note": "top \u00b7 pants",
+     "kind": "base"
+    },
+    {
+     "names": [
+      "charcoal plaid overshirt"
+     ],
+     "note": "top, open front",
+     "kind": "outer"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/dance2/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     },
+     {
+      "layers": [
+       "L0",
+       "L1"
+      ],
+      "tex": {
+       "body": "s1/body.webp",
+       "l0_c0": [
+        "s1/l0_c0.webp",
+        "s1/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s1/l0_c1.webp",
+        "s1/l0_c1_in.webp"
+       ],
+       "l1": [
+        "s1/l1.webp",
+        "s1/l1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "mountain3",
+   "set": "mountain",
+   "title": "A white tee tucked into a black midi skirt under an open beige jacket.",
+   "layers": 2,
+   "tags": [
+    "layered"
+   ],
+   "chips": [
+    "2 layers"
+   ],
+   "photo": "static/gallery/mountain3/photo.webp",
+   "thumb": "static/gallery/mountain3/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/mountain3/turntable.mp4",
+   "poster": "static/gallery/mountain3/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "white tee",
+      "black midi skirt"
+     ],
+     "note": "top, tucked in \u00b7 skirt",
+     "kind": "base"
+    },
+    {
+     "names": [
+      "beige jacket"
+     ],
+     "note": "top, open front",
+     "kind": "outer"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/mountain3/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     },
+     {
+      "layers": [
+       "L0",
+       "L1"
+      ],
+      "tex": {
+       "body": "s1/body.webp",
+       "l0_c0": [
+        "s1/l0_c0.webp",
+        "s1/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s1/l0_c1.webp",
+        "s1/l0_c1_in.webp"
+       ],
+       "l1": [
+        "s1/l1.webp",
+        "s1/l1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "newjeans4",
+   "set": "newjeans",
+   "title": "A white long-sleeve collared shirt and navy shorts are worn under a closed navy argyle sweater vest.",
+   "layers": 2,
+   "tags": [
+    "layered"
+   ],
+   "chips": [
+    "2 layers"
+   ],
+   "photo": "static/gallery/newjeans4/photo.webp",
+   "thumb": "static/gallery/newjeans4/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/newjeans4/turntable.mp4",
+   "poster": "static/gallery/newjeans4/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "white collared shirt",
+      "navy shorts"
+     ],
+     "note": "top \u00b7 pants",
+     "kind": "base"
+    },
+    {
+     "names": [
+      "navy argyle sweater vest"
+     ],
+     "note": "top",
+     "kind": "outer"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/newjeans4/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     },
+     {
+      "layers": [
+       "L0",
+       "L1"
+      ],
+      "tex": {
+       "body": "s1/body.webp",
+       "l0_c0": [
+        "s1/l0_c0.webp",
+        "s1/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s1/l0_c1.webp",
+        "s1/l0_c1_in.webp"
+       ],
+       "l1": [
+        "s1/l1.webp",
+        "s1/l1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "africa3",
+   "set": "africa",
+   "title": "A single teal patterned kaftan dress with a decorative front panel, wide sleeves and a loose below-knee silhouette.",
+   "layers": 1,
+   "tags": [
+    "dress"
+   ],
+   "chips": [
+    "1 layer",
+    "Dress"
+   ],
+   "photo": "static/gallery/africa3/photo.webp",
+   "thumb": "static/gallery/africa3/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/africa3/turntable.mp4",
+   "poster": "static/gallery/africa3/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "teal patterned kaftan dress"
+     ],
+     "note": "dress",
+     "kind": "base"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/africa3/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0": [
+        "s0/l0.webp",
+        "s0/l0_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "experiment4",
+   "set": "expnew",
+   "title": "White cropped tee with a black pleated mini skirt and an open black cropped blazer.",
+   "layers": 2,
+   "tags": [
+    "layered"
+   ],
+   "chips": [
+    "2 layers"
+   ],
+   "photo": "static/gallery/experiment4/photo.webp",
+   "thumb": "static/gallery/experiment4/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/experiment4/turntable.mp4",
+   "poster": "static/gallery/experiment4/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "white cropped tee",
+      "black pleated skirt"
+     ],
+     "note": "top \u00b7 skirt",
+     "kind": "base"
+    },
+    {
+     "names": [
+      "black cropped blazer"
+     ],
+     "note": "top, open front",
+     "kind": "outer"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/experiment4/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     },
+     {
+      "layers": [
+       "L0",
+       "L1"
+      ],
+      "tex": {
+       "body": "s1/body.webp",
+       "l0_c0": [
+        "s1/l0_c0.webp",
+        "s1/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s1/l0_c1.webp",
+        "s1/l0_c1_in.webp"
+       ],
+       "l1": [
+        "s1/l1.webp",
+        "s1/l1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "dance4",
+   "set": "dance",
+   "title": "A black camisole and charcoal maxi skirt worn under an open ivory cardigan.",
+   "layers": 2,
+   "tags": [
+    "layered",
+    "pose"
+   ],
+   "chips": [
+    "2 layers",
+    "Dynamic pose"
+   ],
+   "photo": "static/gallery/dance4/photo.webp",
+   "thumb": "static/gallery/dance4/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/dance4/turntable.mp4",
+   "poster": "static/gallery/dance4/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "black camisole",
+      "charcoal maxi skirt"
+     ],
+     "note": "top \u00b7 skirt",
+     "kind": "base"
+    },
+    {
+     "names": [
+      "ivory open cardigan"
+     ],
+     "note": "top, open front",
+     "kind": "outer"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/dance4/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     },
+     {
+      "layers": [
+       "L0",
+       "L1"
+      ],
+      "tex": {
+       "body": "s1/body.webp",
+       "l0_c0": [
+        "s1/l0_c0.webp",
+        "s1/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s1/l0_c1.webp",
+        "s1/l0_c1_in.webp"
+       ],
+       "l1": [
+        "s1/l1.webp",
+        "s1/l1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "mountain5",
+   "set": "mountain",
+   "title": "A gray tee and black pants under an open black jacket.",
+   "layers": 2,
+   "tags": [
+    "layered",
+    "pose"
+   ],
+   "chips": [
+    "2 layers",
+    "Dynamic pose"
+   ],
+   "photo": "static/gallery/mountain5/photo.webp",
+   "thumb": "static/gallery/mountain5/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/mountain5/turntable.mp4",
+   "poster": "static/gallery/mountain5/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "gray tee",
+      "black pants"
+     ],
+     "note": "top \u00b7 pants",
+     "kind": "base"
+    },
+    {
+     "names": [
+      "black jacket"
+     ],
+     "note": "top, open front",
+     "kind": "outer"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/mountain5/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     },
+     {
+      "layers": [
+       "L0",
+       "L1"
+      ],
+      "tex": {
+       "body": "s1/body.webp",
+       "l0_c0": [
+        "s1/l0_c0.webp",
+        "s1/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s1/l0_c1.webp",
+        "s1/l0_c1_in.webp"
+       ],
+       "l1": [
+        "s1/l1.webp",
+        "s1/l1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "newjeans1",
+   "set": "newjeans",
+   "title": "A pale gray sleeveless midi dress under an open ivory zip jacket.",
+   "layers": 2,
+   "tags": [
+    "layered",
+    "dress"
+   ],
+   "chips": [
+    "2 layers",
+    "Dress"
+   ],
+   "photo": "static/gallery/newjeans1/photo.webp",
+   "thumb": "static/gallery/newjeans1/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/newjeans1/turntable.mp4",
+   "poster": "static/gallery/newjeans1/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "pale gray midi dress"
+     ],
+     "note": "dress",
+     "kind": "base"
+    },
+    {
+     "names": [
+      "ivory zip jacket"
+     ],
+     "note": "top, open front",
+     "kind": "outer"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/newjeans1/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     },
+     {
+      "layers": [
+       "L0",
+       "L1"
+      ],
+      "tex": {
+       "body": "s1/body.webp",
+       "l0_c0": [
+        "s1/l0_c0.webp",
+        "s1/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s1/l0_c1.webp",
+        "s1/l0_c1_in.webp"
+       ],
+       "l1": [
+        "s1/l1.webp",
+        "s1/l1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "experiment8",
+   "set": "expnew",
+   "title": "A multicolor striped short-sleeve t-shirt worn over black cargo pants.",
+   "layers": 1,
+   "tags": [
+    "pose"
+   ],
+   "chips": [
+    "1 layer",
+    "Dynamic pose"
+   ],
+   "photo": "static/gallery/experiment8/photo.webp",
+   "thumb": "static/gallery/experiment8/thumb.webp",
+   "cutout": true,
+   "video": "static/gallery/experiment8/turntable.mp4",
+   "poster": "static/gallery/experiment8/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "multicolor striped t-shirt",
+      "black cargo pants"
+     ],
+     "note": "top \u00b7 pants",
+     "kind": "base"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/experiment8/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "africa5",
+   "set": "africa",
+   "title": "A fitted teal-and-gold strapless maxi dress with a floor-length hem and a high front slit.",
+   "layers": 1,
+   "tags": [
+    "dress"
+   ],
+   "chips": [
+    "1 layer",
+    "Dress"
+   ],
+   "photo": "static/gallery/africa5/photo.webp",
+   "thumb": "static/gallery/africa5/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/africa5/turntable.mp4",
+   "poster": "static/gallery/africa5/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "teal-and-gold strapless maxi dress"
+     ],
+     "note": "dress",
+     "kind": "base"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/africa5/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0": [
+        "s0/l0.webp",
+        "s0/l0_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "dance1",
+   "set": "dance",
+   "title": "A blue patterned long-sleeve crop top with a black pleated skirt.",
+   "layers": 1,
+   "tags": [
+    "pose"
+   ],
+   "chips": [
+    "1 layer",
+    "Dynamic pose"
+   ],
+   "photo": "static/gallery/dance1/photo.webp",
+   "thumb": "static/gallery/dance1/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/dance1/turntable.mp4",
+   "poster": "static/gallery/dance1/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "blue patterned crop top",
+      "black pleated skirt"
+     ],
+     "note": "top \u00b7 skirt",
+     "kind": "base"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/dance1/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "experiment3",
+   "set": "expnew",
+   "title": "Layered white long sleeve tee under a black graphic short sleeve tee with gray wide-leg sweatpants.",
+   "layers": 2,
+   "tags": [
+    "layered"
+   ],
+   "chips": [
+    "2 layers"
+   ],
+   "photo": "static/gallery/experiment3/photo.webp",
+   "thumb": "static/gallery/experiment3/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/experiment3/turntable.mp4",
+   "poster": "static/gallery/experiment3/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "white long sleeve tee",
+      "gray sweatpants"
+     ],
+     "note": "top \u00b7 pants",
+     "kind": "base"
+    },
+    {
+     "names": [
+      "black graphic tee"
+     ],
+     "note": "top",
+     "kind": "outer"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/experiment3/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     },
+     {
+      "layers": [
+       "L0",
+       "L1"
+      ],
+      "tex": {
+       "body": "s1/body.webp",
+       "l0_c0": [
+        "s1/l0_c0.webp",
+        "s1/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s1/l0_c1.webp",
+        "s1/l0_c1_in.webp"
+       ],
+       "l1": [
+        "s1/l1.webp",
+        "s1/l1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "mountain2",
+   "set": "mountain",
+   "title": "A white tee tucked into black wide-leg pants under an open beige cardigan.",
+   "layers": 2,
+   "tags": [
+    "layered"
+   ],
+   "chips": [
+    "2 layers"
+   ],
+   "photo": "static/gallery/mountain2/photo.webp",
+   "thumb": "static/gallery/mountain2/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/mountain2/turntable.mp4",
+   "poster": "static/gallery/mountain2/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "white tee",
+      "black wide-leg pants"
+     ],
+     "note": "top, tucked in \u00b7 pants",
+     "kind": "base"
+    },
+    {
+     "names": [
+      "beige cardigan"
+     ],
+     "note": "top, open front",
+     "kind": "outer"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/mountain2/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     },
+     {
+      "layers": [
+       "L0",
+       "L1"
+      ],
+      "tex": {
+       "body": "s1/body.webp",
+       "l0_c0": [
+        "s1/l0_c0.webp",
+        "s1/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s1/l0_c1.webp",
+        "s1/l0_c1_in.webp"
+       ],
+       "l1": [
+        "s1/l1.webp",
+        "s1/l1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "newjeans3",
+   "set": "newjeans",
+   "title": "A white short-sleeve tee and plaid skirt under an open navy cardigan.",
+   "layers": 2,
+   "tags": [
+    "layered"
+   ],
+   "chips": [
+    "2 layers"
+   ],
+   "photo": "static/gallery/newjeans3/photo.webp",
+   "thumb": "static/gallery/newjeans3/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/newjeans3/turntable.mp4",
+   "poster": "static/gallery/newjeans3/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "white tee",
+      "plaid skirt"
+     ],
+     "note": "top \u00b7 skirt",
+     "kind": "base"
+    },
+    {
+     "names": [
+      "navy cardigan"
+     ],
+     "note": "top, open front",
+     "kind": "outer"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/newjeans3/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     },
+     {
+      "layers": [
+       "L0",
+       "L1"
+      ],
+      "tex": {
+       "body": "s1/body.webp",
+       "l0_c0": [
+        "s1/l0_c0.webp",
+        "s1/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s1/l0_c1.webp",
+        "s1/l0_c1_in.webp"
+       ],
+       "l1": [
+        "s1/l1.webp",
+        "s1/l1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "experiment6",
+   "set": "expnew",
+   "title": "A white graphic tee worn with olive cargo pants.",
+   "layers": 1,
+   "tags": [
+    "pose"
+   ],
+   "chips": [
+    "1 layer",
+    "Dynamic pose"
+   ],
+   "photo": "static/gallery/experiment6/photo.webp",
+   "thumb": "static/gallery/experiment6/thumb.webp",
+   "cutout": true,
+   "video": "static/gallery/experiment6/turntable.mp4",
+   "poster": "static/gallery/experiment6/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "white graphic tee",
+      "olive cargo pants"
+     ],
+     "note": "top \u00b7 pants",
+     "kind": "base"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/experiment6/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "africa4",
+   "set": "africa",
+   "title": "A closed purple patterned full-length robe with long sleeves and a round neckline.",
+   "layers": 1,
+   "tags": [
+    "dress"
+   ],
+   "chips": [
+    "1 layer",
+    "Dress"
+   ],
+   "photo": "static/gallery/africa4/photo.webp",
+   "thumb": "static/gallery/africa4/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/africa4/turntable.mp4",
+   "poster": "static/gallery/africa4/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "purple patterned robe"
+     ],
+     "note": "dress",
+     "kind": "base"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/africa4/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0": [
+        "s0/l0.webp",
+        "s0/l0_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "dance3",
+   "set": "dance",
+   "title": "A cream lace long-sleeve cropped top worn with brown wide-leg pants.",
+   "layers": 1,
+   "tags": [
+    "pose"
+   ],
+   "chips": [
+    "1 layer",
+    "Dynamic pose"
+   ],
+   "photo": "static/gallery/dance3/photo.webp",
+   "thumb": "static/gallery/dance3/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/dance3/turntable.mp4",
+   "poster": "static/gallery/dance3/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "cream lace cropped top",
+      "brown wide-leg pants"
+     ],
+     "note": "top \u00b7 pants",
+     "kind": "base"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/dance3/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "experiment1",
+   "set": "expnew",
+   "title": "Navy oversized short-sleeve tee worn untucked over white shorts.",
+   "layers": 1,
+   "tags": [],
+   "chips": [
+    "1 layer"
+   ],
+   "photo": "static/gallery/experiment1/photo.webp",
+   "thumb": "static/gallery/experiment1/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/experiment1/turntable.mp4",
+   "poster": "static/gallery/experiment1/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "navy oversized tee",
+      "white shorts"
+     ],
+     "note": "top \u00b7 pants",
+     "kind": "base"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/experiment1/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "mountain1",
+   "set": "mountain",
+   "title": "A cream short-sleeve tee tucked into a high-waisted brown midi skirt.",
+   "layers": 1,
+   "tags": [],
+   "chips": [
+    "1 layer"
+   ],
+   "photo": "static/gallery/mountain1/photo.webp",
+   "thumb": "static/gallery/mountain1/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/mountain1/turntable.mp4",
+   "poster": "static/gallery/mountain1/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "cream short-sleeve tee",
+      "brown midi skirt"
+     ],
+     "note": "top, tucked in \u00b7 skirt",
+     "kind": "base"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/mountain1/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "newjeans2",
+   "set": "newjeans",
+   "title": "A white Converse T-shirt worn with a dark plaid mini skirt.",
+   "layers": 1,
+   "tags": [],
+   "chips": [
+    "1 layer"
+   ],
+   "photo": "static/gallery/newjeans2/photo.webp",
+   "thumb": "static/gallery/newjeans2/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/newjeans2/turntable.mp4",
+   "poster": "static/gallery/newjeans2/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "white Converse T-shirt",
+      "dark plaid mini skirt"
+     ],
+     "note": "top \u00b7 skirt",
+     "kind": "base"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/newjeans2/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "experiment9",
+   "set": "expnew",
+   "title": "A green long-sleeve sweatshirt hangs over white shorts.",
+   "layers": 1,
+   "tags": [
+    "pose"
+   ],
+   "chips": [
+    "1 layer",
+    "Dynamic pose"
+   ],
+   "photo": "static/gallery/experiment9/photo.webp",
+   "thumb": "static/gallery/experiment9/thumb.webp",
+   "cutout": true,
+   "video": "static/gallery/experiment9/turntable.mp4",
+   "poster": "static/gallery/experiment9/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "green sweatshirt",
+      "white shorts"
+     ],
+     "note": "top \u00b7 pants",
+     "kind": "base"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/experiment9/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "africa2",
+   "set": "africa",
+   "title": "An orange patterned long-sleeved tunic worn over matching orange patterned trousers.",
+   "layers": 1,
+   "tags": [],
+   "chips": [
+    "1 layer"
+   ],
+   "photo": "static/gallery/africa2/photo.webp",
+   "thumb": "static/gallery/africa2/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/africa2/turntable.mp4",
+   "poster": "static/gallery/africa2/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "orange patterned tunic",
+      "orange patterned trousers"
+     ],
+     "note": "top \u00b7 pants",
+     "kind": "base"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/africa2/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "dance5",
+   "set": "dance",
+   "title": "A dark textured crew-neck sweater hangs over cream straight-leg pants.",
+   "layers": 1,
+   "tags": [
+    "pose"
+   ],
+   "chips": [
+    "1 layer",
+    "Dynamic pose"
+   ],
+   "photo": "static/gallery/dance5/photo.webp",
+   "thumb": "static/gallery/dance5/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/dance5/turntable.mp4",
+   "poster": "static/gallery/dance5/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "dark textured sweater",
+      "cream straight-leg pants"
+     ],
+     "note": "top \u00b7 pants",
+     "kind": "base"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/dance5/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "experiment2",
+   "set": "expnew",
+   "title": "Oversized navy football jersey worn over gray fitted bike shorts.",
+   "layers": 1,
+   "tags": [],
+   "chips": [
+    "1 layer"
+   ],
+   "photo": "static/gallery/experiment2/photo.webp",
+   "thumb": "static/gallery/experiment2/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/experiment2/turntable.mp4",
+   "poster": "static/gallery/experiment2/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "navy football jersey",
+      "gray bike shorts"
+     ],
+     "note": "top \u00b7 pants",
+     "kind": "base"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/experiment2/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "mountain4",
+   "set": "mountain",
+   "title": "A light gray long-sleeve sweatshirt hangs over black pants.",
+   "layers": 1,
+   "tags": [
+    "pose"
+   ],
+   "chips": [
+    "1 layer",
+    "Dynamic pose"
+   ],
+   "photo": "static/gallery/mountain4/photo.webp",
+   "thumb": "static/gallery/mountain4/thumb.webp",
+   "cutout": false,
+   "video": "static/gallery/mountain4/turntable.mp4",
+   "poster": "static/gallery/mountain4/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "light gray sweatshirt",
+      "black pants"
+     ],
+     "note": "top \u00b7 pants",
+     "kind": "base"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/mountain4/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "experiment11",
+   "set": "expnew",
+   "title": "A taupe short-sleeve top tucked into black pants.",
+   "layers": 1,
+   "tags": [
+    "body"
+   ],
+   "chips": [
+    "1 layer",
+    "Plus size"
+   ],
+   "photo": "static/gallery/experiment11/photo.webp",
+   "thumb": "static/gallery/experiment11/thumb.webp",
+   "cutout": true,
+   "video": "static/gallery/experiment11/turntable.mp4",
+   "poster": "static/gallery/experiment11/turntable.webp",
+   "plan": [
+    {
+     "names": [
+      "taupe short-sleeve top",
+      "black pants"
+     ],
+     "note": "top, tucked in \u00b7 pants",
+     "kind": "base"
+    }
+   ],
+   "model": {
+    "dir": "static/gallery/experiment11/3d/",
+    "mesh": "mesh.glb",
+    "states": [
+     {
+      "layers": [
+       "L0"
+      ],
+      "tex": {
+       "body": "s0/body.webp",
+       "l0_c0": [
+        "s0/l0_c0.webp",
+        "s0/l0_c0_in.webp"
+       ],
+       "l0_c1": [
+        "s0/l0_c1.webp",
+        "s0/l0_c1_in.webp"
+       ]
+      }
+     }
+    ]
+   }
+  }
+ ]
+}

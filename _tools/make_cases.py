@@ -1,0 +1,109 @@
+#!/usr/bin/env python3
+"""Write cases.json: which GLB, atlas, photo and agent plan each web result uses.
+Sources follow provenance.json (traced from the wrapped_sim inputs)."""
+import json
+from pathlib import Path
+
+DA = Path("/home/nanxiangjiang/agentic_garment/DressAnything")
+R = Path("/data/nanxiangjiang/homepage_renders")
+TOOLS = Path(__file__).resolve().parent
+W = Path("/data/nanxiangjiang/baselines/_wild")
+
+# display order: varied looks up front
+ORDER = ["experiment5", "newjeans5", "africa1", "experiment10", "dance2", "mountain3",
+         "newjeans4", "africa3", "experiment4", "dance4", "mountain5", "newjeans1",
+         "experiment8", "africa5", "dance1", "experiment3", "mountain2", "newjeans3",
+         "experiment6", "africa4", "dance3", "experiment1", "mountain1", "newjeans2",
+         "experiment9", "africa2", "dance5", "experiment2", "mountain4", "experiment11"]
+POSE = {"dance1", "dance2", "dance3", "dance4", "dance5", "experiment6", "experiment8",
+        "experiment9", "experiment10", "mountain4", "mountain5"}
+DRESS = {"africa1", "africa3", "africa4", "africa5", "newjeans1"}
+BODY = {"experiment11"}
+
+
+def source(case):
+    s = case.rstrip("0123456789")
+    s = {"experiment": "expnew"}.get(s, s)
+    if s == "dance":
+        demo = DA / "demos/dance" / case
+        glb = demo / "final/render/reposed/garment_final_pose.glb"
+    elif s == "expnew":
+        demo = DA / "demos/experiment" / case
+        n = int(case[10:])
+        if n in (1, 4):          # paper GLBs were lost; rebuilt from inputs_expnew
+            glb = R / "wsim/outputs_expnew" / case / "reposed/garment_final_pose.glb"
+        elif n in (2, 3, 5):     # same drape, body and target as the paper run
+            glb = demo / f"repose/out/{case}/garment_final_pose.glb"
+        else:
+            glb = demo / "final/render/reposed/garment_final_pose.glb"
+    else:
+        demo = DA / "demos_new" / s / case
+        glb = demo / "final/render/reposed/garment_final_pose.glb"
+    atlas = DA / f"wrapped_sim/inputs_{s}/{case}/layers"
+    if case == "newjeans3":      # inputs_newjeans was regenerated; these match the GLB
+        atlas = R / "atlas_shims/newjeans3/layers"
+    manifest = json.loads((DA / f"wrapped_sim/inputs_{s}/{case}/manifest.json").read_text())
+    layers = [l["id"] for l in manifest["layers"]]
+    return s, demo, glb, atlas, layers
+
+
+def main():
+    gallery = []
+    for case in ORDER:
+        s, demo, glb, atlas, layers = source(case)
+        photo = demo / "input.png"
+        cut = None
+        if s == "expnew" and int(case[10:]) >= 6:
+            cut, photo = photo, None   # these inputs are already cut out
+        tags, chips = [], []
+        if len(layers) > 1:
+            tags.append("layered")
+        if case in POSE:
+            tags.append("pose"); chips.append("Dynamic pose")
+        if case in DRESS:
+            tags.append("dress"); chips.append("Dress")
+        if case in BODY:
+            tags.append("body"); chips.append("Plus size")
+        gallery.append({
+            "id": case, "set": s, "glb": str(glb), "atlas_root": str(atlas),
+            "photo": str(photo) if photo else None, "cutout": str(cut) if cut else None,
+            "layers_json": str(demo / "layers.json"), "tags": tags, "chips": chips,
+            "states": [layers[:k + 1] for k in range(len(layers))],
+        })
+    methods = [
+        {"id": "dresscode", "label": "DressCode", "color": "#70ad47"},
+        {"id": "chatgarment", "label": "ChatGarment", "color": "#f7c56e"},
+        {"id": "isp", "label": "ISP", "color": "#69addc"},
+        {"id": "garmentrecovery", "label": "GarmentRecovery", "color": "#4c74b1"},
+        {"id": "ours", "label": "Ours", "color": "#fa9d57"},
+    ]
+    labels = {1: "Tee & shorts", 2: "Jersey", 3: "Layered tees", 4: "Cropped blazer", 5: "Vest & jacket",
+              6: "Crouch", 8: "Sitting", 9: "Squat", 10: "Kneeling", 11: "Plus size"}
+
+    def cmp_case(n):
+        inp = (R / f"cutouts/experiment{n}_input_cutout_from_comparison_pdf.png" if n <= 5
+               else DA / f"demos/experiment/experiment{n}/input.png")
+        return {"id": f"experiment{n}", "label": labels[n], "input_src": str(inp)}
+
+    data = {
+        "default": "experiment5",
+        "filters": [{"id": "all", "label": "All"}, {"id": "layered", "label": "Multi-layer"},
+                    {"id": "pose", "label": "Dynamic poses"}, {"id": "dress", "label": "Dresses & robes"}],
+        "gallery": gallery,
+        "compare": {
+            "methods": methods,
+            "rows": [{"id": "dressed", "label": "Dressed"}, {"id": "garment", "label": "Garments only"}],
+            "groups": {"layered": [cmp_case(n) for n in (1, 2, 3, 4, 5)],
+                       "poses": [cmp_case(n) for n in (6, 8, 9, 10, 11)]},
+            "ours_glb": {f"experiment{n}": [str(source(f"experiment{n}")[2]), str(source(f"experiment{n}")[3])]
+                         for n in (1, 2, 3, 4, 5, 6, 8, 9, 10, 11)},
+        },
+    }
+    (TOOLS / "cases.json").write_text(json.dumps(data, indent=1))
+    missing = [c["id"] for c in gallery if not Path(c["glb"]).is_file()]
+    print("cases:", len(gallery), "missing glb:", missing)
+    print("states:", sum(len(c["states"]) for c in gallery))
+
+
+if __name__ == "__main__":
+    main()
