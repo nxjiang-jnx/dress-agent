@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
-import { clothMaterial, setCloth, skinMaterial } from './bakedmat.js';
+import { bakedParts, setBaked } from './bakedmat.js';
 
 const $ = (s, r = document) => r.querySelector(s);
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -137,12 +137,12 @@ class Stage {
     const texMap = new Map(urls.map((u, i) => [u, texs[i]]));
     const root = gltf.scene;
     const meshes = {};
-    root.traverse(o => { if (o.isMesh) meshes[o.name.toLowerCase()] = o; });
+    root.traverse(o => { if (o.isMesh && !o.name.endsWith('_back')) meshes[o.name.toLowerCase()] = o; });
     const parts = [];
     for (const [name, mesh] of Object.entries(meshes)) {
       const garment = name !== 'body';
-      mesh.material = garment ? clothMaterial() : skinMaterial();
-      parts.push({ name, layer: garment ? +layerOf(name) : -1, mesh, garment });
+      const back = bakedParts(mesh, !garment);
+      parts.push({ name, layer: garment ? +layerOf(name) : -1, mesh, back, garment });
     }
     const model = { item, root, parts, texCache: new Map([[state, texMap]]), state: -1 };
     this.applyState(model, state);
@@ -173,8 +173,7 @@ class Stage {
       p.mesh.visible = on;
       if (!t) continue;
       const [a, b] = [].concat(t);
-      if (p.garment) setCloth(p.mesh.material, tex.get(a), b && tex.get(b));
-      else { p.mesh.material.map = tex.get(a); p.mesh.material.needsUpdate = true; }
+      setBaked(p.mesh, p.back, tex.get(a), b && tex.get(b), !p.garment);
     }
     model.state = k;
     this.onChange(model);
@@ -207,7 +206,7 @@ class Stage {
     let r2 = 0;
     const v = new THREE.Vector3();
     model.root.traverse(o => {
-      if (!o.isMesh) return;
+      if (!o.isMesh || o.name.endsWith('_back')) return;
       const pos = o.geometry.attributes.position;
       for (let i = 0; i < pos.count; i += 3) {
         v.fromBufferAttribute(pos, i).applyMatrix4(o.matrixWorld);
@@ -302,17 +301,14 @@ async function main() {
     card.className = 'card';
     card.tabIndex = 0;
     card.style.animationDelay = `${Math.min(i, 12) * 35}ms`;
-    card.dataset.tags = it.tags.join(' ');
+    card.setAttribute('aria-label', it.title);
     card.innerHTML = `
       <div class="card__media">
         <video muted loop playsinline preload="none" poster="${it.poster}" data-src="${it.video.replace(/\.mp4$/, VIDEO_EXT)}"></video>
         <div class="card__photo"><img loading="lazy" src="${it.thumb}" alt=""></div>
         <span class="card__cta">View in 3D</span>
       </div>
-      <div class="card__body">
-        <p class="card__title">${it.title}</p>
-        <div class="card__tags">${it.chips.map((c, j) => `<span class="chip-s${j === 0 && it.layers > 1 ? ' is-accent' : ''}">${c}</span>`).join('')}</div>
-      </div>`;
+`;
     card.addEventListener('click', () => select(it.id, true));
     card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(it.id, true); } });
     grid.appendChild(card);
@@ -320,30 +316,7 @@ async function main() {
     vidObs.observe(card.querySelector('video'));
   });
 
-  // ---- filters ----
-  const filters = $('#gallery-filters');
-  const count = $('#gallery-count');
-  let order = items.map(it => it.id);
-  const applyFilter = f => {
-    let n = 0;
-    order = [];
-    items.forEach(it => {
-      const on = f === 'all' || it.tags.includes(f);
-      cards.get(it.id).classList.toggle('is-hidden', !on);
-      if (on) { n++; order.push(it.id); }
-    });
-    count.textContent = `${n} result${n === 1 ? '' : 's'}`;
-    filters.querySelectorAll('.chip').forEach(b => b.classList.toggle('is-active', b.dataset.f === f));
-  };
-  data.filters.forEach(f => {
-    const b = document.createElement('button');
-    b.className = 'chip';
-    b.dataset.f = f.id;
-    b.innerHTML = `${f.label}<span>${f.id === 'all' ? items.length : items.filter(it => it.tags.includes(f.id)).length}</span>`;
-    b.addEventListener('click', () => applyFilter(f.id));
-    filters.appendChild(b);
-  });
-  applyFilter('all');
+  const order = items.map(it => it.id);
 
   // ---- side panel ----
   const plan = $('#stage-plan');
@@ -365,11 +338,10 @@ async function main() {
     img.classList.toggle('is-cutout', !!it.cutout);
     $('#stage-title').textContent = it.title;
     $('#stage-title-m').textContent = it.title;
-    $('#stage-chips').innerHTML = it.chips.map((c, j) => `<span class="chip-s${j === 0 && it.layers > 1 ? ' is-accent' : ''}">${c}</span>`).join('');
     plan.innerHTML = it.plan.map((p, i) => `
       <li data-k="${i}">
         <span class="plan__tag">L${i + 1}</span>
-        <span class="plan__names">${p.names.map(n => `<b>${n}</b>`).join('<br>')}<small>${p.note}</small></span>
+        <span class="plan__names">${p.names.map(n => `<b>${n}</b>`).join('<br>')}</span>
       </li>`).join('');
     plan.querySelectorAll('li').forEach(li => li.addEventListener('click', () => {
       if (it.model.states.length > 1) stage.setState(Math.min(+li.dataset.k, it.model.states.length - 1));

@@ -68,7 +68,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -85,7 +88,10 @@
        "L1"
       ],
       "tex": {
-       "body": "s1/body.webp",
+       "body": [
+        "s1/body.webp",
+        "s1/body_in.webp"
+       ],
        "l0_c0": [
         "s1/l0_c0.webp",
         "s1/l0_c0_in.webp"
@@ -107,7 +113,10 @@
        "L2"
       ],
       "tex": {
-       "body": "s2/body.webp",
+       "body": [
+        "s2/body.webp",
+        "s2/body_in.webp"
+       ],
        "l0_c0": [
         "s2/l0_c0.webp",
         "s2/l0_c0_in.webp"
@@ -171,7 +180,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -188,7 +200,10 @@
        "L1"
       ],
       "tex": {
-       "body": "s1/body.webp",
+       "body": [
+        "s1/body.webp",
+        "s1/body_in.webp"
+       ],
        "l0_c0": [
         "s1/l0_c0.webp",
         "s1/l0_c0_in.webp"
@@ -241,7 +256,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0": [
         "s0/l0.webp",
         "s0/l0_in.webp"
@@ -295,7 +313,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -312,7 +333,10 @@
        "L1"
       ],
       "tex": {
-       "body": "s1/body.webp",
+       "body": [
+        "s1/body.webp",
+        "s1/body_in.webp"
+       ],
        "l0_c0": [
         "s1/l0_c0.webp",
         "s1/l0_c0_in.webp"
@@ -374,7 +398,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -391,7 +418,10 @@
        "L1"
       ],
       "tex": {
-       "body": "s1/body.webp",
+       "body": [
+        "s1/body.webp",
+        "s1/body_in.webp"
+       ],
        "l0_c0": [
         "s1/l0_c0.webp",
         "s1/l0_c0_in.webp"
@@ -451,7 +481,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -468,7 +501,10 @@
        "L1"
       ],
       "tex": {
-       "body": "s1/body.webp",
+       "body": [
+        "s1/body.webp",
+        "s1/body_in.webp"
+       ],
        "l0_c0": [
         "s1/l0_c0.webp",
         "s1/l0_c0_in.webp"
@@ -528,7 +564,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -545,7 +584,10 @@
        "L1"
       ],
       "tex": {
-       "body": "s1/body.webp",
+       "body": [
+        "s1/body.webp",
+        "s1/body_in.webp"
+       ],
        "l0_c0": [
         "s1/l0_c0.webp",
         "s1/l0_c0_in.webp"
@@ -598,7 +640,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0": [
         "s0/l0.webp",
         "s0/l0_in.webp"
@@ -650,7 +695,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -667,7 +715,10 @@
        "L1"
       ],
       "tex": {
-       "body": "s1/body.webp",
+       "body": [
+        "s1/body.webp",
+        "s1/body_in.webp"
+       ],
        "l0_c0": [
         "s1/l0_c0.webp",
         "s1/l0_c0_in.webp"
@@ -729,7 +780,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -746,7 +800,10 @@
        "L1"
       ],
       "tex": {
-       "body": "s1/body.webp",
+       "body": [
+        "s1/body.webp",
+        "s1/body_in.webp"
+       ],
        "l0_c0": [
         "s1/l0_c0.webp",
         "s1/l0_c0_in.webp"
@@ -808,7 +865,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -825,7 +885,10 @@
        "L1"
       ],
       "tex": {
-       "body": "s1/body.webp",
+       "body": [
+        "s1/body.webp",
+        "s1/body_in.webp"
+       ],
        "l0_c0": [
         "s1/l0_c0.webp",
         "s1/l0_c0_in.webp"
@@ -886,7 +949,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -903,7 +969,10 @@
        "L1"
       ],
       "tex": {
-       "body": "s1/body.webp",
+       "body": [
+        "s1/body.webp",
+        "s1/body_in.webp"
+       ],
        "l0_c0": [
         "s1/l0_c0.webp",
         "s1/l0_c0_in.webp"
@@ -957,7 +1026,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -1006,7 +1078,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0": [
         "s0/l0.webp",
         "s0/l0_in.webp"
@@ -1052,7 +1127,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -1108,7 +1186,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -1125,7 +1206,10 @@
        "L1"
       ],
       "tex": {
-       "body": "s1/body.webp",
+       "body": [
+        "s1/body.webp",
+        "s1/body_in.webp"
+       ],
        "l0_c0": [
         "s1/l0_c0.webp",
         "s1/l0_c0_in.webp"
@@ -1185,7 +1269,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -1202,7 +1289,10 @@
        "L1"
       ],
       "tex": {
-       "body": "s1/body.webp",
+       "body": [
+        "s1/body.webp",
+        "s1/body_in.webp"
+       ],
        "l0_c0": [
         "s1/l0_c0.webp",
         "s1/l0_c0_in.webp"
@@ -1262,7 +1352,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -1279,7 +1372,10 @@
        "L1"
       ],
       "tex": {
-       "body": "s1/body.webp",
+       "body": [
+        "s1/body.webp",
+        "s1/body_in.webp"
+       ],
        "l0_c0": [
         "s1/l0_c0.webp",
         "s1/l0_c0_in.webp"
@@ -1333,7 +1429,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -1382,7 +1481,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0": [
         "s0/l0.webp",
         "s0/l0_in.webp"
@@ -1428,7 +1530,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -1475,7 +1580,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -1522,7 +1630,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -1569,7 +1680,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -1619,7 +1733,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -1666,7 +1783,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -1716,7 +1836,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -1763,7 +1886,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -1813,7 +1939,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"
@@ -1863,7 +1992,10 @@
        "L0"
       ],
       "tex": {
-       "body": "s0/body.webp",
+       "body": [
+        "s0/body.webp",
+        "s0/body_in.webp"
+       ],
        "l0_c0": [
         "s0/l0_c0.webp",
         "s0/l0_c0_in.webp"

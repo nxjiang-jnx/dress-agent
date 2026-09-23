@@ -1,8 +1,7 @@
-// Baseline comparisons: one synchronized turntable per method, scrubbed together.
+// Baseline comparisons: one turntable per method, all turning in sync.
 (function () {
   'use strict';
   var DRIFT = 0.09;       // seconds of drift tolerated before a resync
-  var TURN_PER_CELL = 0.5; // dragging one cell width turns the models half a revolution
 
   var probe = document.createElement('video');
   var EXT = probe.canPlayType('video/mp4; codecs="avc1.64001F"') ? '.mp4' : '.webm';
@@ -19,9 +18,6 @@
     this.cfg = cfg;
     this.scenes = scenes;
     this.grid = root.querySelector('.cmp__grid');
-    this.slider = root.querySelector('.cmp__angle');
-    this.deg = root.querySelector('.cmp__deg');
-    this.playBtn = root.querySelector('.cmp__play');
     this.videos = [];
     this.playing = true;
     this.t = 0;              // turntable time in seconds
@@ -77,10 +73,8 @@
         v.src = src + EXT;
         v.addEventListener('loadeddata', function () { cell.classList.add('is-ready'); self.kick(); });
         cell.appendChild(v);
-        cell.appendChild(el('div', 'spin'));
         self.grid.appendChild(cell);
         self.videos.push(v);
-        self.dragTarget(cell);
       });
     });
     this.grid.appendChild(el('div'));
@@ -105,7 +99,7 @@
       var dt = Math.abs(v.currentTime - t);
       dt = Math.min(dt, dur - dt);
       if (force || dt > DRIFT) v.currentTime = t;
-      if (self.playing && !self.dragging && self.visible) { if (v.paused) v.play().catch(function () {}); }
+      if (self.playing && self.visible) { if (v.paused) v.play().catch(function () {}); }
       else if (!v.paused) v.pause();
     });
   };
@@ -117,7 +111,7 @@
       self.raf = null;
       if (!self.visible) return;
       var dur = self.duration();
-      if (self.playing && !self.dragging) {
+      if (self.playing) {
         if (self.last != null) self.t = (self.t + (now - self.last) / 1000) % dur;
         // follow a playing video as the clock source so the picture never jumps
         var lead = self.videos.filter(function (v) { return !v.paused && v.readyState >= 3; })[0];
@@ -128,73 +122,13 @@
       }
       self.last = now;
       if (!self.lastSync || now - self.lastSync > 250) { self.sync(false); self.lastSync = now; }
-      var frac = dur ? self.t / dur : 0;
-      if (!self.sliding) self.slider.value = Math.round(frac * 1000);
-      self.deg.textContent = Math.round(frac * 360) + '°';
       self.raf = requestAnimationFrame(loop);
     };
     this.raf = requestAnimationFrame(loop);
   };
 
-  Group.prototype.seek = function (t) {
-    var dur = this.duration();
-    this.t = ((t % dur) + dur) % dur;
-    var self = this;
-    if (this.pendingSeek) return;
-    this.pendingSeek = true;
-    requestAnimationFrame(function () {
-      self.pendingSeek = false;
-      self.videos.forEach(function (v) { if (v.readyState >= 1) { if (!v.paused) v.pause(); v.currentTime = self.t; } });
-    });
-  };
-
-  Group.prototype.dragTarget = function (cell) {
-    var self = this, x0 = 0, t0 = 0, id = null;
-    cell.addEventListener('pointerdown', function (e) {
-      if (e.button !== 0) return;
-      id = e.pointerId;
-      cell.setPointerCapture(id);
-      x0 = e.clientX; t0 = self.t;
-      self.dragging = true;
-      self.root.classList.add('is-dragging');
-    });
-    cell.addEventListener('pointermove', function (e) {
-      if (e.pointerId !== id) return;
-      var dx = e.clientX - x0;
-      self.seek(t0 - dx / cell.clientWidth * TURN_PER_CELL * self.duration());
-    });
-    var end = function (e) {
-      if (e.pointerId !== id) return;
-      id = null;
-      self.dragging = false;
-      self.last = null;
-      self.root.classList.remove('is-dragging');
-      self.sync(true);
-    };
-    cell.addEventListener('pointerup', end);
-    cell.addEventListener('pointercancel', end);
-  };
-
   Group.prototype.bind = function () {
     var self = this;
-    this.slider.addEventListener('input', function () {
-      self.sliding = true;
-      self.dragging = true;
-      self.seek(self.slider.value / 1000 * self.duration());
-    });
-    this.slider.addEventListener('change', function () {
-      self.sliding = false;
-      self.dragging = false;
-      self.last = null;
-      self.sync(true);
-    });
-    this.playBtn.addEventListener('click', function () {
-      self.playing = !self.playing;
-      self.playBtn.setAttribute('aria-pressed', String(self.playing));
-      self.playBtn.setAttribute('aria-label', self.playing ? 'Pause' : 'Play');
-      self.last = null;
-      self.sync(true);
-    });
     new IntersectionObserver(function (es) {
       self.visible = es[0].isIntersecting;
       self.last = null;

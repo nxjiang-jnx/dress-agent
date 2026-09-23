@@ -1,28 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="utf-8">
+  <meta name="description" content="Inverse Garment Design with Visual Agents">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="DressAgent recovers simulation-ready, multi-layer sewing patterns from a single in-the-wild photo with visual agents.">
-  <meta name="keywords" content="Inverse Garment Design, Sewing Patterns, Visual Agents, Cloth Simulation, 3D Garments">
-  <meta name="application-name" content="DressAgent">
-  <meta name="theme-color" content="#ffffff">
-  <title>DressAgent: Inverse Garment Design with Visual Agents</title>
+  <meta name="keywords" content="Inverse Garment Design, Sewing Patterns, Visual Agents, Cloth Simulation, 3D Garments, 4D Generation">
+  <meta name="application-name" content="Inverse Garment Design with Visual Agents">
+  <title>
+    Inverse Garment Design with Visual Agents
+  </title>
   <meta property="og:type" content="website">
-  <meta property="og:title" content="DressAgent: Inverse Garment Design with Visual Agents">
-  <meta property="og:description" content="Simulation-ready, multi-layer sewing patterns from a single in-the-wild photo.">
-  <meta property="og:site_name" content="DressAgent">
+  <meta property="og:title" content="Inverse Garment Design with Visual Agents">
+  <meta property="og:description" content="Simulation-ready sewing patterns from a single in-the-wild image.">
   <meta property="og:image" content="./static/images/og.jpg">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" as="video" href="./static/videos/teaser-small.mp4" type="video/mp4" media="(min-width: 1024px)">
+  <link rel="preload" as="video" href="./static/videos/teaser-mobile-small.mp4" type="video/mp4" media="(max-width: 1023px)">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans:400,500,700|Noto+Sans:400,500,600&display=swap" rel="stylesheet">
+  <meta name="msapplication-TileColor" content="#2774AE" />
+  <meta name="msapplication-TileImage" content="./static/images/favicon-270.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./static/images/favicon-180.png" />
+  <link rel="icon" type="image/png" href="./static/images/favicon-192.png" sizes="192x192" />
+  <link rel="icon" type="image/png" href="./static/images/favicon-32.png" sizes="32x32" />
+  <link rel="icon" href="./static/images/favicon.ico" sizes="any" />
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="stylesheet" href="./static/css/dress.css">
-  <link rel="icon" type="image/svg+xml" href="./static/images/favicon.svg">
 
   <script type="importmap">
     {
@@ -33,64 +40,182 @@
     }
   </script>
   <link rel="modulepreload" href="./static/js/vendor/three/three.module.min.js">
+  <style>
+  .hero-cover-desktop {
+      background-color: #000000;
+      background-image: url("./static/videos/teaser.png");
+      background-size: cover;
+      color: #fff;
+  }
+  .hero-cover-touch {
+      background-color: #000000;
+      background-image: url("./static/videos/teaser-mobile.png");
+      background-size: cover;
+      color: #fff;
+  }
+
+
+  .column-my {
+    flex: 1;  /* Ensures both columns take up equal width */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .half {
+      flex: 1;               /* Each child takes half the height of the column */
+      display: flex;         /* Make it a flex container */
+      justify-content: center; /* Center horizontally */
+      align-items: center;     /* Center vertically */
+      text-align: center;    /* Align text within the element */
+  }
+
+
+  </style>
 </head>
 
 <body>
 <script>document.documentElement.classList.add('js');</script>
 
-<!-- Floating navigation -->
-<nav class="topbar" id="topbar" aria-label="Sections">
-  <a class="topbar__brand" href="#top">DressAgent</a>
-  <div class="topbar__links">
-    <a href="#abstract">Overview</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#comparisons">Comparisons</a>
-    <a href="#bibtex">BibTeX</a>
+<section class="hero hero-cover-desktop is-link is-hidden-touch is-fullheight video" id="top" style="overflow: hidden; position:relative;">
+  <div class="hero-video is-hidden-touch"
+    style="height: 100%; width: 177.77777778vh; min-width: 100%;min-height: 56.25vw;">
+    <video playsinline autoplay muted loop preload="auto">
+      <source src="./static/videos/teaser-small.mp4" type="video/mp4">
+    </video>
   </div>
-</nav>
+  <div class="hero-video is-hidden-desktop is-inline-block-mobile"
+    style="height: 154.28571428vw; width: 100%; min-width:64.81481481vh;min-height:100%;">
+    <video playsinline autoplay muted loop preload="auto">
+      <source src="./static/videos/teaser-mobile-small.mp4" type="video/mp4">
+    </video>
+  </div> 
+  <div class="overlay">
+  </div>
 
-<!-- Hero (teaser to be added) -->
-<header class="hero-da" id="top">
-  <div class="hero-da__inner">
-    <p class="hero-da__eyebrow">Sewing patterns from a single photo</p>
-    <h1 class="hero-da__title">DressAgent</h1>
-    <p class="hero-da__subtitle">Inverse Garment Design with Visual Agents</p>
-    <p class="hero-da__authors">Anonymous Authors</p>
-    <div class="hero-da__links">
-      <a class="pill-link is-disabled" aria-disabled="true" title="Coming soon">
-        <svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg> Paper
-      </a>
-      <a class="pill-link is-disabled" aria-disabled="true" title="Coming soon">
-        <svg viewBox="0 0 24 24"><path d="M4 19.5V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2.5z"/><path d="M8 7h7M8 11h5"/></svg> arXiv
-      </a>
-      <a class="pill-link is-disabled" aria-disabled="true" title="Coming soon">
-        <svg viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg> Code
-      </a>
-      <span class="hero-da__soon">Paper and code coming soon</span>
+  <div class="hero-head is-hidden-touch">
+    <header class="navbar is-hidden-touch">
+      <div class="container is-size-5">
+        <div class="navbar-menu">
+          <div class="navbar-end">
+            <!-- placeholders: point Paper / arXiv / Code here once they are public -->
+            <a class="navbar-item pl-4 pr-4" href="./">
+              <span class="icon" style="margin-right:5px;">
+                <img src="./static/images/pdf.svg" alt="PDF" />
+              </span>
+              <span>Paper</span>
+            </a>
+            <a class="navbar-item  pl-4 pr-4" href="./">
+              <span class="icon" style="margin-right:5px;">
+                <img src="./static/images/arxiv.svg" alt="ArXiv" />
+              </span>
+              <span>arXiv</span> 
+            </a>
+            <a class="navbar-item  pl-4 pr-4" href="./">
+              <span class="icon" style="margin-right:5px;">
+                <img src="./static/images/github.png" alt="GitHub" />
+              </span>
+              <span>Code</span> 
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <!--  Hero content: will be in the middle -->
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title is-1 publication-title is-size-1-mobile" style="font-size: 7rem;">
+        Inverse Garment Design <br> with Visual Agents
+      </h1>
+      <br>
+      <h1 class="is-2 is-size-4-mobile" style="font-size: 2rem; opacity: 100%;">
+        <a href="https://nxjiang-jnx.github.io/">Nanxiang Jiang<sup class="is-size-6-mobile">1</sup></a>
+        <a href="https://yunuoch.github.io/">Yunuo Chen<sup class="is-size-6-mobile">1</sup></a>
+        <a href="https://zeng-tao.github.io/">Zeng Tao<sup class="is-size-6-mobile">1</sup></a>
+        <a href="https://kyleleey.github.io/">Zizhang Li<sup class="is-size-6-mobile">2</sup></a>
+        <br>
+        <a href="https://qig.github.io/">Qi Guo<sup class="is-size-6-mobile">3</sup></a>
+        <a href="https://www.jiajunwu.com">Jiajun Wu<sup class="is-size-6-mobile">2</sup></a>
+        <a href="https://yangzzzy.github.io/">Yin Yang<sup class="is-size-6-mobile">4</sup></a>
+        <a href="https://www.math.ucla.edu/~cffjiang/">Chenfanfu Jiang<sup class="is-size-6-mobile">1</sup></a>
+      </h1>
+      <br>
+      <h1 class="is-3 is-size-5-mobile affiliation-line" style="font-size: 1.75rem; opacity: 100%;">
+        <span class="affiliation-item">1. University of California, Los Angeles</span>
+        <span class="affiliation-item">2. Stanford University</span>
+        <span class="affiliation-break"></span>
+        <span class="affiliation-item">3. Independent Researcher</span>
+        <span class="affiliation-item">4. University of Utah</span>
+      </h1>
     </div>
-    <nav class="hero-da__jump" aria-label="Jump to section">
-      <a href="#gallery">Gallery</a>
-      <a href="#gallery-stage">Interactive 3D</a>
-      <a href="#comparisons">Comparisons</a>
+  </div>
+
+  </div>
+
+  <!-- Hero footer: will stick at the bottom -->
+  <div class="hero-foot is-hidden-mobile jump-nav">
+    <nav class="tabs is-toggle is-toggle-rounded is-centered is-size-5 jump-tabs" aria-label="Jump to section">
+      <ul>
+        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#gallery-stage">Interactive Viewer</a></li>
+        <li><a href="#comparisons">Comparisons</a></li>
+      </ul>
     </nav>
   </div>
-</header>
+</section>
 
-<!-- Abstract -->
-<section class="block" id="abstract">
-  <div class="block__inner is-narrow reveal">
-    <h2 class="block__title">Abstract</h2>
-    <p class="abstract">
-      We study the problem of inverse garment design, reconstructing simulation-ready 3D outfits with arbitrary layers from a single image, with visual agents.
-      Unlike differentiable optimization that is time-consuming, or feed-forward methods limited by training data, we introduce <strong>DressAgent</strong>, a hierarchical agentic system that recovers garment sewing patterns through planning and closed-loop refinement grounded in physical simulation.
-      To this end, we first present an enhanced representation based on GarmentCode for diverse styles and arbitrary dressing layers, and build the first multi-layer sewing pattern dataset with over 15K outfits for supervision and benchmarking.
-      Inverse design then proceeds coarse to fine.
-      In <em>layer planning and coarse estimation</em>, agents infer layer order and relations, peel each layer into its own view, and estimate coarse patterns.
-      In <em>fine-grained refinement</em>, an agentic trio of Tailor, Critic, and Orchestrator refines patterns in a closed loop of editing, simulating, and judging against the reference with visual and measured evidence.
-      Carefully designed tools and an evolving memory make this refinement converge on the target geometry.
-      We also design an agentic generation method for high-fidelity textures.
-      DressAgent outperforms feed-forward methods by a large margin, surpasses or matches differentiable optimization in a fraction of the time, and generalizes to complex layering, diverse poses, and body shapes.
-    </p>
+<section class="hero hero-cover-touch is-hidden-desktop is-link is-fullheight video" style="overflow: hidden; position:relative;">
+
+  <div class="hero-video is-inline-block-mobile"
+  style="height: 172.28571428vw; width: 100%; min-width: 100%;min-height: 56.25vw;">
+  <video playsinline autoplay muted loop preload="auto">
+    <source src="./static/videos/teaser-mobile-small.mp4" type="video/mp4">
+  </video>
+  </div>
+
+
+  <div class="overlay">
+  </div>
+
+  <!--  Hero content: will be in the middle -->
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title is-1 publication-title is-size-1-mobile" style="font-size: 7rem;">
+        Inverse Garment Design <br> with Visual Agents
+      </h1>
+      <h1 class="is-3 is-size-5-mobile" style="font-size: 2rem; opacity: 100%;">
+        <a href="https://nxjiang-jnx.github.io/">Nanxiang Jiang<sup class="is-size-6-mobile">1</sup></a>
+        <a href="https://yunuoch.github.io/">Yunuo Chen<sup class="is-size-6-mobile">1</sup></a>
+        <a href="https://zeng-tao.github.io/">Zeng Tao<sup class="is-size-6-mobile">1</sup></a>
+        <a href="https://kyleleey.github.io/">Zizhang Li<sup class="is-size-6-mobile">2</sup></a>
+        <br>
+        <a href="https://qig.github.io/">Qi Guo<sup class="is-size-6-mobile">3</sup></a>
+        <a href="https://www.jiajunwu.com">Jiajun Wu<sup class="is-size-6-mobile">2</sup></a>
+        <a href="https://yangzzzy.github.io/">Yin Yang<sup class="is-size-6-mobile">4</sup></a>
+        <a href="https://www.math.ucla.edu/~cffjiang/">Chenfanfu Jiang<sup class="is-size-6-mobile">1</sup></a>
+      </h1>
+    </div>
+  </div>
+
+  </div>
+
+</section>
+
+<!-- Problem setting -->
+<section class="section is-medium setting" id="intro">
+  <div class="container is-max-desktop reveal">
+    <p class="setting__eyebrow">Problem Setting</p>
+    <h2 class="setting__title">Simulation-ready garment reconstruction from a single image</h2>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths has-text-justified">
+        <h2 class="subtitle">
+          Given a <strong>single in-the-wild image</strong>, we recover every garment of the outfit as a <strong>sewing pattern</strong>.
+          The patterns are <strong>simulation-ready</strong>, so they drape and animate on the body, and directly serve <strong>3D and 4D generation</strong>.
+        </h2>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -99,12 +224,7 @@
   <div class="block__inner">
     <div class="block__head reveal">
       <h2 class="block__title">Gallery</h2>
-      <p class="block__lead">
-        Every outfit starts from one in-the-wild photo.
-        The agents plan the layers, write each garment as a sewing pattern, and refine it in simulation.
-        The textured garments are then draped on the recovered body and reposed to the photo.
-        Pick any result below to explore it in 3D.
-      </p>
+      <p class="block__lead">Every result comes from a single in-the-wild photo. Pick one to explore it in 3D.</p>
     </div>
 
     <!-- Interactive stage -->
@@ -129,7 +249,6 @@
         <canvas id="stage-canvas"></canvas>
         <div class="stage__meta">
           <p class="stage__title" id="stage-title"></p>
-          <div class="stage__chips" id="stage-chips"></div>
         </div>
         <div class="stage__tools" role="toolbar" aria-label="Viewer controls">
           <button class="tool" id="tool-rotate" aria-pressed="true" title="Auto-rotate (Space)">
@@ -162,12 +281,7 @@
     </div>
 
     <!-- Result wall -->
-    <div class="wall-head reveal">
-      <div class="chips" id="gallery-filters" role="tablist" aria-label="Filter results"></div>
-      <p class="wall-count" id="gallery-count"></p>
-    </div>
     <div class="wall" id="gallery-grid"></div>
-    <p class="render-note">Turntables are rendered with Cycles in one studio setup. The 3D viewer shows the same lighting, baked into the textures.</p>
   </div>
 </section>
 
@@ -176,45 +290,26 @@
   <div class="block__inner is-wide">
     <div class="block__head reveal">
       <h2 class="block__title">Comparisons</h2>
-      <p class="block__lead">
-        We compare with feed-forward methods, DressCode and ChatGarment, and with differentiable optimization, ISP and GarmentRecovery, on in-the-wild photos.
-        DressCode produces coarse textures. GarmentRecovery often interpenetrates the body in simulation.
-        ChatGarment and ISP recover plausible shapes but misjudge the number of layers.
-        ChatGarment, ISP, and GarmentRecovery do not generate textures, so we show only their geometry.
-      </p>
+      <p class="block__lead">ChatGarment, ISP, and GarmentRecovery do not generate textures, so we show only their geometry.</p>
     </div>
 
     <div class="cmp reveal" data-group="layered">
       <div class="cmp__head">
         <h3 class="cmp__title">Layered outfits</h3>
-        <p class="cmp__sub">One to three layers</p>
       </div>
       <div class="cmp__scenes" role="tablist"></div>
       <div class="cmp__stage">
         <div class="cmp__grid"></div>
-      </div>
-      <div class="cmp__bar">
-        <button class="cmp__play" aria-label="Pause" aria-pressed="true"><svg viewBox="0 0 24 24"><path class="i-pause" d="M8 5v14M16 5v14"/><path class="i-play" d="M7 4.5v15l12-7.5z"/></svg></button>
-        <input class="cmp__angle" type="range" min="0" max="1000" value="0" aria-label="Rotation">
-        <span class="cmp__deg">0&deg;</span>
-        <span class="cmp__tip">Drag any result to turn them all together</span>
       </div>
     </div>
 
     <div class="cmp reveal" data-group="poses">
       <div class="cmp__head">
         <h3 class="cmp__title">Diverse poses and body shapes</h3>
-        <p class="cmp__sub">Crouching, sitting, and plus-size bodies</p>
       </div>
       <div class="cmp__scenes" role="tablist"></div>
       <div class="cmp__stage">
         <div class="cmp__grid"></div>
-      </div>
-      <div class="cmp__bar">
-        <button class="cmp__play" aria-label="Pause" aria-pressed="true"><svg viewBox="0 0 24 24"><path class="i-pause" d="M8 5v14M16 5v14"/><path class="i-play" d="M7 4.5v15l12-7.5z"/></svg></button>
-        <input class="cmp__angle" type="range" min="0" max="1000" value="0" aria-label="Rotation">
-        <span class="cmp__deg">0&deg;</span>
-        <span class="cmp__tip">Drag any result to turn them all together</span>
       </div>
     </div>
   </div>
@@ -226,11 +321,10 @@
     <h2 class="block__title">BibTeX</h2>
     <div class="bib">
       <button class="bib__copy" id="bib-copy">Copy</button>
-      <pre><code id="bib-code">@inproceedings{dressagent2027,
-  title     = {Inverse Garment Design with Visual Agents},
-  author    = {Anonymous},
-  booktitle = {Under review},
-  year      = {2026}
+      <pre><code id="bib-code">@misc{jiang2026inverse,
+  title  = {Inverse Garment Design with Visual Agents},
+  author = {Nanxiang Jiang and Yunuo Chen and Zeng Tao and Zizhang Li and Qi Guo and Jiajun Wu and Yin Yang and Chenfanfu Jiang},
+  year   = {2026}
 }</code></pre>
     </div>
   </div>

@@ -17,8 +17,9 @@ from pathlib import Path
 
 TOOLS = Path(__file__).resolve().parent
 DA = Path("/home/nanxiangjiang/agentic_garment/DressAnything")
-SCRIPT = {"orbit": TOOLS / "orbit_render.py", "bake": TOOLS / "bake_case.py"}
-MARK = {"orbit": "orbit.json", "bake": "bake.json"}
+SCRIPT = {"orbit": TOOLS / "orbit_render.py", "bake": TOOLS / "bake_case.py",
+          "bodyin": TOOLS / "bake_case.py"}
+MARK = {"orbit": "orbit.json", "bake": "bake.json", "bodyin": "body_inner.done"}
 
 
 def main():

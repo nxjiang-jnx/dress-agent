@@ -49,6 +49,8 @@ def parse():
     p.add_argument("--layers", default="",
                    help="peel state: comma list of layer ids to keep (e.g. L0,L1); default all")
     p.add_argument("--no-mesh", action="store_true", help="skip the mesh.glb export")
+    p.add_argument("--body-inner-only", action="store_true",
+                   help="only add the body's inner bake to an existing bake in --out-dir")
     return p.parse_args(raw)
 
 
@@ -185,12 +187,30 @@ def main():
             bpy.ops.mesh.select_all(action="SELECT")
             bpy.ops.uv.smart_project(angle_limit=math.radians(60), island_margin=0.004)
             bpy.ops.object.mode_set(mode="OBJECT")
-        img = bpy.data.images.new("body_bake", args.body_res, args.body_res, float_buffer=True)
+        if not args.body_inner_only:
+            img = bpy.data.images.new("body_bake", args.body_res, args.body_res, float_buffer=True)
+            bake_to(body, img, "bake", args.samples)
+            save_display(img, out / "body.png", agx=True, exposure=0.0)
+            dump_uv(body, "bake", out / "body.uv.npy")
+        # inside of the body (mouth, eye sockets, ears seen from behind), as Cycles shades back faces
+        flip(body)
+        img = bpy.data.images.new("body_in", args.body_res // 2, args.body_res // 2, float_buffer=True)
         bake_to(body, img, "bake", args.samples)
-        save_display(img, out / "body.png", agx=True, exposure=0.0)
-        dump_uv(body, "bake", out / "body.uv.npy")
-        meta["meshes"].append({"name": "body", "uv": "bake", "tex": "body.png"})
+        save_display(img, out / "body_b.png", agx=True, exposure=0.0)
+        flip(body)
+        meta["meshes"].append({"name": "body", "uv": "bake", "tex": "body.png", "tex_back": "body_b.png"})
         print("baked body", flush=True)
+        if args.body_inner_only:
+            old = json.loads((out / "bake.json").read_text())
+            for m in old["meshes"]:
+                if m["name"] == "body":
+                    m["tex_back"] = "body_b.png"
+            (out / "bake.json").write_text(json.dumps(old, indent=1))
+            import subprocess
+            subprocess.run([nt.compositor_python(), str(Path(__file__).resolve().parent / "seam_fill.py"),
+                            str(out)], check=True)
+            (out / "body_inner.done").write_text("ok")
+            return
 
     for g in garments:
         uv0 = g.data.uv_layers[0].name

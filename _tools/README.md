@@ -8,8 +8,8 @@ Jekyll skips this folder, so it is not published.
 | --- | --- |
 | `make_cases.py` | writes `cases.json`: GLB, atlas root, photo and agent layer plan of every result |
 | `orbit_render.py` | Blender turntable through the renderer; only the camera orbits (fixed radius, fitted to every azimuth) |
-| `bake_case.py` | bakes the same Cycles scene per texel for the WebGL viewer (body AgX, garments Standard, cloth baked on both sides); `--layers L0,L1` bakes a peeled state |
-| `seam_fill.py` | refills island borders and gutters of a bake from the island interior |
+| `bake_case.py` | bakes the same Cycles scene per texel for the WebGL viewer (body AgX, garments Standard; body and cloth are baked on both sides so back faces, e.g. an open mouth, look as in Cycles); `--layers L0,L1` bakes a peeled state |
+| `seam_fill.py` | refills island borders and gutters of a bake from the island interior; on the body it also clears the black eye sockets and the lid-hidden eyeball texels, which mipmaps would otherwise bleed into a dark eye ring |
 | `run_jobs.py` | drains a job queue on one GPU; run one per GPU (2 and 3) |
 | `build_site.py` | frames to H.264 + VP9 video and posters, bakes to WebP, writes `static/data/*.json` |
 | `shot.py` | headless screenshots for checking the page |
