@@ -932,6 +932,11 @@
   "groups": {
    "layered": [
     {
+     "id": "experiment4",
+     "label": "Cropped blazer",
+     "input_src": "/data/nanxiangjiang/homepage_renders/cutouts/experiment4_input_cutout_from_comparison_pdf.png"
+    },
+    {
      "id": "experiment1",
      "label": "Tee & shorts",
      "input_src": "/data/nanxiangjiang/homepage_renders/cutouts/experiment1_input_cutout_from_comparison_pdf.png"
@@ -947,17 +952,17 @@
      "input_src": "/data/nanxiangjiang/homepage_renders/cutouts/experiment3_input_cutout_from_comparison_pdf.png"
     },
     {
-     "id": "experiment4",
-     "label": "Cropped blazer",
-     "input_src": "/data/nanxiangjiang/homepage_renders/cutouts/experiment4_input_cutout_from_comparison_pdf.png"
-    },
-    {
      "id": "experiment5",
      "label": "Vest & jacket",
      "input_src": "/data/nanxiangjiang/homepage_renders/cutouts/experiment5_input_cutout_from_comparison_pdf.png"
     }
    ],
    "poses": [
+    {
+     "id": "experiment10",
+     "label": "Kneeling",
+     "input_src": "/home/nanxiangjiang/agentic_garment/DressAnything/demos/experiment/experiment10/input.png"
+    },
     {
      "id": "experiment6",
      "label": "Crouch",
@@ -972,11 +977,6 @@
      "id": "experiment9",
      "label": "Squat",
      "input_src": "/home/nanxiangjiang/agentic_garment/DressAnything/demos/experiment/experiment9/input.png"
-    },
-    {
-     "id": "experiment10",
-     "label": "Kneeling",
-     "input_src": "/home/nanxiangjiang/agentic_garment/DressAnything/demos/experiment/experiment10/input.png"
     },
     {
      "id": "experiment11",
