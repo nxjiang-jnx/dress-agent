@@ -23,6 +23,8 @@ BODY = {"experiment11"}
 # repose of these missed the first piece of the base layer as a collider; re-run in wsim/repose_fix
 REPOSE_FIX = {"mountain3", "mountain5"}
 WS = DA / "wrapped_sim"
+# hand-picked crops of the group photos that show the whole person (the case inputs are tight strips)
+PHOTOS = R / "photos"
 
 
 def source(case):
@@ -70,6 +72,8 @@ def main():
     for case in ORDER:
         s, demo, glb, atlas, layers, pattern = source(case)
         photo = demo / "input.png"
+        if (PHOTOS / f"{case}.png").is_file():
+            photo = PHOTOS / f"{case}.png"
         cut = None
         if s == "expnew" and int(case[10:]) >= 6:
             cut, photo = photo, None   # these inputs are already cut out

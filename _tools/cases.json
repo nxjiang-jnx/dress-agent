@@ -54,7 +54,7 @@
    "set": "newjeans",
    "glb": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/newjeans/newjeans5/final/render/reposed/garment_final_pose.glb",
    "atlas_root": "/home/nanxiangjiang/agentic_garment/DressAnything/wrapped_sim/inputs_newjeans/newjeans5/layers",
-   "photo": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/newjeans/newjeans5/input.png",
+   "photo": "/data/nanxiangjiang/homepage_renders/photos/newjeans5.png",
    "cutout": null,
    "layers_json": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/newjeans/newjeans5/layers.json",
    "tags": [
@@ -189,7 +189,7 @@
    "set": "mountain",
    "glb": "/data/nanxiangjiang/homepage_renders/wsim/repose_fix/out/mountain3/garment_final_pose.glb",
    "atlas_root": "/home/nanxiangjiang/agentic_garment/DressAnything/wrapped_sim/inputs_mountain/mountain3/layers",
-   "photo": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/mountain/mountain3/input.png",
+   "photo": "/data/nanxiangjiang/homepage_renders/photos/mountain3.png",
    "cutout": null,
    "layers_json": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/mountain/mountain3/layers.json",
    "tags": [
@@ -240,7 +240,7 @@
    "set": "newjeans",
    "glb": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/newjeans/newjeans4/final/render/reposed/garment_final_pose.glb",
    "atlas_root": "/home/nanxiangjiang/agentic_garment/DressAnything/wrapped_sim/inputs_newjeans/newjeans4/layers",
-   "photo": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/newjeans/newjeans4/input.png",
+   "photo": "/data/nanxiangjiang/homepage_renders/photos/newjeans4.png",
    "cutout": null,
    "layers_json": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/newjeans/newjeans4/layers.json",
    "tags": [
@@ -265,7 +265,7 @@
    "set": "africa",
    "glb": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/africa/africa3/final/render/reposed/garment_final_pose.glb",
    "atlas_root": "/home/nanxiangjiang/agentic_garment/DressAnything/wrapped_sim/inputs_africa/africa3/layers",
-   "photo": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/africa/africa3/input.png",
+   "photo": "/data/nanxiangjiang/homepage_renders/photos/africa3.png",
    "cutout": null,
    "layers_json": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/africa/africa3/layers.json",
    "tags": [
@@ -400,7 +400,7 @@
    "set": "newjeans",
    "glb": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/newjeans/newjeans1/final/render/reposed/garment_final_pose.glb",
    "atlas_root": "/home/nanxiangjiang/agentic_garment/DressAnything/wrapped_sim/inputs_newjeans/newjeans1/layers",
-   "photo": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/newjeans/newjeans1/input.png",
+   "photo": "/data/nanxiangjiang/homepage_renders/photos/newjeans1.png",
    "cutout": null,
    "layers_json": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/newjeans/newjeans1/layers.json",
    "tags": [
@@ -471,7 +471,7 @@
    "set": "africa",
    "glb": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/africa/africa5/final/render/reposed/garment_final_pose.glb",
    "atlas_root": "/home/nanxiangjiang/agentic_garment/DressAnything/wrapped_sim/inputs_africa/africa5/layers",
-   "photo": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/africa/africa5/input.png",
+   "photo": "/data/nanxiangjiang/homepage_renders/photos/africa5.png",
    "cutout": null,
    "layers_json": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/africa/africa5/layers.json",
    "tags": [
@@ -568,7 +568,7 @@
    "set": "mountain",
    "glb": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/mountain/mountain2/final/render/reposed/garment_final_pose.glb",
    "atlas_root": "/home/nanxiangjiang/agentic_garment/DressAnything/wrapped_sim/inputs_mountain/mountain2/layers",
-   "photo": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/mountain/mountain2/input.png",
+   "photo": "/data/nanxiangjiang/homepage_renders/photos/mountain2.png",
    "cutout": null,
    "layers_json": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/mountain/mountain2/layers.json",
    "tags": [
@@ -593,7 +593,7 @@
    "set": "newjeans",
    "glb": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/newjeans/newjeans3/final/render/reposed/garment_final_pose.glb",
    "atlas_root": "/data/nanxiangjiang/homepage_renders/atlas_shims/newjeans3/layers",
-   "photo": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/newjeans/newjeans3/input.png",
+   "photo": "/data/nanxiangjiang/homepage_renders/photos/newjeans3.png",
    "cutout": null,
    "layers_json": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/newjeans/newjeans3/layers.json",
    "tags": [
@@ -641,7 +641,7 @@
    "set": "africa",
    "glb": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/africa/africa4/final/render/reposed/garment_final_pose.glb",
    "atlas_root": "/home/nanxiangjiang/agentic_garment/DressAnything/wrapped_sim/inputs_africa/africa4/layers",
-   "photo": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/africa/africa4/input.png",
+   "photo": "/data/nanxiangjiang/homepage_renders/photos/africa4.png",
    "cutout": null,
    "layers_json": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/africa/africa4/layers.json",
    "tags": [
@@ -684,7 +684,7 @@
    "set": "dance",
    "glb": "/home/nanxiangjiang/agentic_garment/DressAnything/demos/dance/dance3/final/render/reposed/garment_final_pose.glb",
    "atlas_root": "/home/nanxiangjiang/agentic_garment/DressAnything/wrapped_sim/inputs_dance/dance3/layers",
-   "photo": "/home/nanxiangjiang/agentic_garment/DressAnything/demos/dance/dance3/input.png",
+   "photo": "/data/nanxiangjiang/homepage_renders/photos/dance3.png",
    "cutout": null,
    "layers_json": "/home/nanxiangjiang/agentic_garment/DressAnything/demos/dance/dance3/layers.json",
    "tags": [
@@ -727,7 +727,7 @@
    "set": "mountain",
    "glb": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/mountain/mountain1/final/render/reposed/garment_final_pose.glb",
    "atlas_root": "/home/nanxiangjiang/agentic_garment/DressAnything/wrapped_sim/inputs_mountain/mountain1/layers",
-   "photo": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/mountain/mountain1/input.png",
+   "photo": "/data/nanxiangjiang/homepage_renders/photos/mountain1.png",
    "cutout": null,
    "layers_json": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/mountain/mountain1/layers.json",
    "tags": [],
@@ -746,7 +746,7 @@
    "set": "newjeans",
    "glb": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/newjeans/newjeans2/final/render/reposed/garment_final_pose.glb",
    "atlas_root": "/home/nanxiangjiang/agentic_garment/DressAnything/wrapped_sim/inputs_newjeans/newjeans2/layers",
-   "photo": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/newjeans/newjeans2/input.png",
+   "photo": "/data/nanxiangjiang/homepage_renders/photos/newjeans2.png",
    "cutout": null,
    "layers_json": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/newjeans/newjeans2/layers.json",
    "tags": [],
@@ -788,7 +788,7 @@
    "set": "africa",
    "glb": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/africa/africa2/final/render/reposed/garment_final_pose.glb",
    "atlas_root": "/home/nanxiangjiang/agentic_garment/DressAnything/wrapped_sim/inputs_africa/africa2/layers",
-   "photo": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/africa/africa2/input.png",
+   "photo": "/data/nanxiangjiang/homepage_renders/photos/africa2.png",
    "cutout": null,
    "layers_json": "/home/nanxiangjiang/agentic_garment/DressAnything/demos_new/africa/africa2/layers.json",
    "tags": [],

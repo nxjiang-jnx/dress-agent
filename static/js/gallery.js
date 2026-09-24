@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
-import { bakedParts, setBaked } from './bakedmat.js?v=20260923r';
+import { bakedParts, setBaked } from './bakedmat.js?v=20260923s';
 
 const $ = (s, r = document) => r.querySelector(s);
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -313,7 +313,7 @@ async function main() {
     card.innerHTML = `
       <div class="card__media">
         <video muted loop playsinline preload="none" poster="${assetUrl(it.poster, it.id)}" data-src="${assetUrl(it.video.replace(/\.mp4$/, VIDEO_EXT), it.id)}"></video>
-        <div class="card__photo"><img loading="lazy" src="${it.thumb}" alt=""></div>
+        <div class="card__photo"><img loading="lazy" src="${assetUrl(it.thumb)}" alt=""></div>
         <span class="card__cta">View in 3D</span>
       </div>
 `;
@@ -380,7 +380,7 @@ async function main() {
     ring.style.strokeDashoffset = 106.8;
     loadTimer = setTimeout(() => loading.classList.add('is-on'), 250);
     // the old result stays up until the new model, photo and patterns are all ready
-    const side = Promise.all([still(it.photo), Promise.all(it.pattern.map(still))]);
+    const side = Promise.all([still(assetUrl(it.photo)), Promise.all(it.pattern.map(u => still(assetUrl(u))))]);
     const ok = await stage.load(it, p => { ring.style.strokeDashoffset = 106.8 * (1 - p); }, side)
       .catch(e => { console.error(e); return false; });
     if (!ok || current !== id) return;
