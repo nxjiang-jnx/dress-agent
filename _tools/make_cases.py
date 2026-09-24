@@ -9,13 +9,13 @@ R = Path("/data/nanxiangjiang/homepage_renders")
 TOOLS = Path(__file__).resolve().parent
 W = Path("/data/nanxiangjiang/baselines/_wild")
 
-# display order: varied looks up front
-ORDER = ["experiment5", "newjeans5", "appendix5", "africa1", "experiment10", "dance2",
-         "mountain3", "appendix4", "newjeans4", "africa3", "experiment4", "appendix7",
-         "dance4", "mountain5", "newjeans1", "appendix1", "experiment8", "africa5",
-         "dance1", "appendix3", "experiment3", "mountain2", "newjeans3", "experiment6",
-         "africa4", "appendix2", "dance3", "experiment1", "mountain1", "newjeans2",
-         "experiment9", "africa2", "dance5", "experiment2", "mountain4", "experiment11"]
+# display order: the two lead examples, then one category (photo set) after another
+LEAD = ["appendix7", "experiment3"]
+GROUPS = [["appendix1", "appendix2", "appendix3", "appendix4", "appendix5", "appendix7"],
+          [f"experiment{n}" for n in (1, 2, 3, 4, 5, 6, 8, 9, 10, 11)],
+          [f"newjeans{n}" for n in range(1, 6)], [f"mountain{n}" for n in range(1, 6)],
+          [f"africa{n}" for n in range(1, 6)], [f"dance{n}" for n in range(1, 6)]]
+ORDER = LEAD + [c for g in GROUPS for c in g if c not in LEAD]
 POSE = {"dance1", "dance2", "dance3", "dance4", "dance5", "experiment6", "experiment8",
         "experiment9", "experiment10", "mountain4", "mountain5"}
 DRESS = {"africa1", "africa3", "africa4", "africa5", "newjeans1"}
@@ -108,7 +108,7 @@ def main():
         return {"id": f"experiment{n}", "label": labels[n], "input_src": str(inp)}
 
     data = {
-        "default": "experiment5",
+        "default": LEAD[0],
         "filters": [{"id": "all", "label": "All"}, {"id": "layered", "label": "Multi-layer"},
                     {"id": "pose", "label": "Dynamic poses"}, {"id": "dress", "label": "Dresses & robes"}],
         "gallery": gallery,
