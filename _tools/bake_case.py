@@ -103,6 +103,7 @@ def save_display(image, path, agx, exposure):
     settings = scene.render.image_settings
     settings.file_format, settings.color_mode, settings.color_depth = "PNG", "RGB", "8"
     image.save_render(filepath=str(path), scene=scene)
+    Path(path).with_suffix(".raw.png").unlink(missing_ok=True)   # seam_fill keeps the new raw
 
 
 def smplx_uv(body, uv):

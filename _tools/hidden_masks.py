@@ -5,8 +5,10 @@ Where the body pokes through snug cloth, the patch of cloth under the poke sits 
 it is never seen and bakes black. Texture filtering then bleeds that black around every poke as a
 dark ring, which Cycles, intersecting per pixel, never shows. The pokes are smaller than the cloth
 triangles, so the test runs per texel: each texel of a garment's baked textures is mapped back to
-its 3D point and checked against the body surface. Writes <texture>.hidden.npy (True = inside),
-which seam_fill.py refills from visible cloth.
+its 3D point and checked against the body with its winding number: cloth lying on the skin sits
+within a millimetre of it, where the sign against the nearest face flips from texel to texel and
+would mark large visible areas as hidden. Writes <texture>.hidden.npy (True = inside), which
+seam_fill.py refills from visible cloth.
 
     blender --background --python hidden_masks.py -- --input garment_final_pose.glb \
         --layers L0 --out-dir bake/<case>/s0
@@ -14,7 +16,9 @@ which seam_fill.py refills from visible cloth.
 import argparse
 import importlib.util
 import json
+import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 import bpy
@@ -49,6 +53,16 @@ def world(obj, normals=False):
     return co, nr / (np.linalg.norm(nr, axis=1, keepdims=True) + 1e-12)
 
 
+def inside(points, bv, bf):
+    """Winding number > 1/2 against the body, computed by igl in the garment Python."""
+    with tempfile.TemporaryDirectory() as tmp:
+        src, dst = Path(tmp) / "q.npz", Path(tmp) / "w.npy"
+        np.savez(src, V=bv, F=bf, Q=points)
+        subprocess.run([bake_case.nt.compositor_python(), str(Path(__file__).resolve().parent / "winding.py"),
+                        str(src), str(dst)], check=True)
+        return np.load(dst) > 0.5
+
+
 def texel_points(obj, co, size, candidates, uv_name=None, attr=None):
     """Pixel coords and 3D points (and interpolated attr) of the texels of the candidate triangles."""
     me = obj.data
@@ -75,11 +89,15 @@ def texel_points(obj, co, size, candidates, uv_name=None, attr=None):
         ok = (bary >= -0.05).all(1)
         if not ok.any():
             continue
+        # texels just past an edge are clamped onto the triangle; the weights must be renormalised,
+        # or the point is scaled towards the world origin, i.e. into the body
+        bw = np.clip(bary[ok], 0, 1)
+        bw /= bw.sum(1, keepdims=True)
         ys_all.append(ys.ravel()[ok])
         xs_all.append(xs.ravel()[ok])
-        pts_all.append(np.clip(bary[ok], 0, 1) @ P)
+        pts_all.append(bw @ P)
         if attr is not None:
-            att_all.append(np.clip(bary[ok], 0, 1) @ attr[list(lt.vertices)])
+            att_all.append(bw @ attr[list(lt.vertices)])
     if not pts_all:
         return None
     out = (np.concatenate(ys_all), np.concatenate(xs_all), np.concatenate(pts_all))
@@ -101,7 +119,8 @@ def main():
                 (not keep or base.normalized_object_name(o.name).split("_")[0] in keep)]
     bpy.context.view_layer.update()
     bv = world(body)
-    tree = BVHTree.FromPolygons(bv.tolist(), [tuple(t.vertices) for t in body.data.loop_triangles])
+    bf = np.array([t.vertices[:] for t in body.data.loop_triangles], np.int64)
+    tree = BVHTree.FromPolygons(bv.tolist(), bf.tolist())
     meta = json.loads((a.out_dir / "bake.json").read_text())
     for g in garments:
         name = base.normalized_object_name(g.name)
@@ -117,16 +136,12 @@ def main():
             img = bpy.data.images.load(str(tex))
             size = img.size[0]
             bpy.data.images.remove(img)
-            hid = np.zeros((size, size), np.uint8)
+            hid = np.zeros((size, size), bool)
             got = texel_points(g, co, size, cand)
             if got is not None:
                 ys, xs, pts = got
-                for y, x, pt in zip(ys, xs, pts):
-                    v = Vector(pt.tolist())
-                    loc, nrm, _, _ = tree.find_nearest(v)
-                    if loc is not None and (v - loc).dot(nrm) < 0:
-                        hid[y, x] = 255
-            np.save(tex.with_suffix(".hidden.npy"), hid > 0)
+                hid[ys, xs] = inside(pts, bv, bf)
+            np.save(tex.with_suffix(".hidden.npy"), hid)
             print(f"hidden {name} {key}: {int((hid > 0).sum())} texels inside the body", flush=True)
     body_covered(body, garments, a.out_dir, meta)
     (a.out_dir / "hidden.done").write_text("ok")

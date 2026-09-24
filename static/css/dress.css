@@ -176,6 +176,25 @@ html { scroll-behavior: smooth; scroll-padding-top: 16px; }
 .comparison-stack { display: grid; }
 .comparison-stack > .comparison-grid { grid-area: 1 / 1; }
 
+/* ---------- BibTeX copy ---------- */
+.bib { position: relative; }
+.bib pre { padding-right: 4.5rem; }
+.bib__copy {
+  position: absolute; top: 10px; right: 10px; z-index: 1; height: 32px; min-width: 32px; padding: 0 8px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+  border: 1px solid #e3e3e3; border-radius: 8px; background: #fff; color: #555; cursor: pointer;
+  font: 500 .8rem/1 var(--head); box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+  opacity: 0; transform: translateY(-2px); transition: opacity .18s, transform .18s, background .15s, color .15s, border-color .15s;
+}
+.bib:hover .bib__copy, .bib__copy:focus-visible, .bib__copy.is-done { opacity: 1; transform: none; }
+.bib__copy:hover { background: #f7f7f7; color: #222; border-color: #d6d6d6; }
+.bib__copy:focus-visible { outline: 2px solid #3273dc; outline-offset: 2px; }
+.bib__copy svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.bib__check, .bib__label { display: none; }
+.bib__copy.is-done { color: #1a7f4b; border-color: #bfe3cf; background: #f1faf5; }
+.bib__copy.is-done .bib__icon { display: none; }
+.bib__copy.is-done .bib__check, .bib__copy.is-done .bib__label { display: inline; }
+
 /* ---------- responsive ---------- */
 @media (max-width: 767px) {
   /* the view on top, its layer buttons, then photo | pattern */

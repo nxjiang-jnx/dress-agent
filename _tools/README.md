@@ -9,8 +9,8 @@ Jekyll skips this folder, so it is not published.
 | `make_cases.py` | writes `cases.json`: GLB, atlas root, photo and agent layer plan of every result |
 | `orbit_render.py` | Blender turntable through the renderer; only the camera orbits (fixed radius, fitted to every azimuth) |
 | `bake_case.py` | bakes the same Cycles scene per texel for the WebGL viewer (body AgX, garments Standard; body and cloth are baked on both sides so back faces, e.g. an open mouth, look as in Cycles); `--layers L0,L1` bakes a peeled state |
-| `seam_fill.py` | refills island borders and gutters of a bake from the island interior; on the body it also clears the black eye sockets and the lid-hidden eyeball texels, which mipmaps would otherwise bleed into a dark eye ring |
-| `hidden_masks.py` | per texel, finds cloth inside the body and skin with cloth lying on it; `seam_fill.py` refills those texels (and a 2.5 mm band beside them) from visible, lit surface, so pokes through snug cloth show no dark ring |
+| `seam_fill.py` | refills island borders and gutters of a bake from the island interior; on the body it also clears the black eye sockets and the lid-hidden eyeball texels, which mipmaps would otherwise bleed into a dark eye ring. It always starts from the raw bake (`<tex>.raw.png`, kept on the first run), so it can be re-run |
+| `hidden_masks.py` | per texel, finds cloth inside the body (winding number via igl, `winding.py`; a nearest-face sign test flips on cloth lying on the skin) and skin with cloth lying on it; `seam_fill.py` refills those texels (and a 2.5 mm band beside them) from visible, lit surface, so pokes through snug cloth show no dark ring |
 | `pattern_states.py` | the 3D sewing-pattern still of every peel state (paper_vis sheets, same Cycles studio); one camera and crop per case, so the stills overlay exactly; `--drape/--inputs` reads a wrapped_sim drape instead of `final/best` |
 | `run_jobs.py` | drains a job queue on one GPU; run one per GPU (2 and 3) |
 | `build_site.py` | frames to H.264 + VP9 video and posters, bakes to WebP, writes `static/data/*.json` |

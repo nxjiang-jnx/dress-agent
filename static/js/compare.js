@@ -83,12 +83,13 @@
         var v = el('video', 'comparison-video');
         v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'auto';
         v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
-        v.poster = src + '.webp';
+        var refresh = id === 'experiment6' && m.id === 'ours' ? '?v=' + (window.SITE_VERSION || '') : '';
+        v.poster = src + '.webp' + refresh;
         waits.push(new Promise(function (res) {
           v.addEventListener('canplaythrough', res, { once: true });
           v.addEventListener('error', res, { once: true });
         }));
-        v.src = src + EXT;
+        v.src = src + EXT + refresh;
         wrap.appendChild(v);
         place(wrap, r + 1, j + 3);
         videos.push(v);

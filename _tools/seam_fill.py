@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 """Clean baked textures: keep texels well inside the UV triangles, refill the
-rest (island borders, gutters, holes) from the nearest kept texel."""
+rest (island borders, gutters, holes) from the nearest kept texel.
+
+The first run keeps the raw bake next to the texture (<tex>.raw.png) and every run starts from
+it, so the fill can be re-run (say, after new hidden masks) without compounding."""
 import json
+import shutil
 import sys
 from pathlib import Path
 
@@ -19,7 +23,10 @@ def coverage(tris, w, h):
 
 
 def fill(tex_path, tris, lit_source=False):
-    im = np.asarray(Image.open(tex_path).convert("RGB"))
+    raw = Path(tex_path).with_suffix(".raw.png")
+    if not raw.is_file():
+        shutil.copyfile(tex_path, raw)
+    im = np.asarray(Image.open(raw).convert("RGB"))
     h, w = im.shape[:2]
     mask = coverage(tris, w, h)
     # the outer two texels of every island see the neighbouring panel at grazing

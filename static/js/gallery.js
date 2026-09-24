@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
-import { bakedParts, setBaked } from './bakedmat.js?v=20260923m';
+import { bakedParts, setBaked } from './bakedmat.js?v=20260923r';
 
 const $ = (s, r = document) => r.querySelector(s);
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -16,6 +16,8 @@ const ease = t => 1 - Math.pow(1 - t, 3);
 const layerOf = name => (/^l(\d+)/.exec(name) || [])[1];
 // H.264 where available, VP9 for Chromium builds without it
 const VIDEO_EXT = document.createElement('video').canPlayType('video/mp4; codecs="avc1.64001F"') ? '.mp4' : '.webm';
+// every asset carries the site version, so a re-bake or re-render reaches browsers that cached the old one
+const assetUrl = url => `${url}?v=${window.SITE_VERSION || ''}`;
 
 class Stage {
   constructor(view) {
@@ -101,10 +103,10 @@ class Stage {
   }
 
   // ---- loading ----
-  loadTex(url) {
+  loadTex(url, id) {
     // phones and small GPUs take the 2K skin
     if (this.small && url.endsWith('/body.webp')) url = url.replace(/body\.webp$/, 'body_m.webp');
-    return new Promise((res, rej) => this.texLoader.load(url, t => {
+    return new Promise((res, rej) => this.texLoader.load(assetUrl(url, id), t => {
       t.colorSpace = THREE.SRGBColorSpace;
       t.flipY = false;                          // glTF UV convention
       t.anisotropy = this.aniso;
@@ -124,8 +126,8 @@ class Stage {
     let done = 0;
     const tick = () => progress(++done / (urls.length + 1));
     const [gltf, ...texs] = await Promise.all([
-      this.gltf.loadAsync(base + m.mesh).then(g => (tick(), g)),
-      ...urls.map(u => this.loadTex(base + u).then(t => (tick(), t))),
+      this.gltf.loadAsync(assetUrl(base + m.mesh, item.id)).then(g => (tick(), g)),
+      ...urls.map(u => this.loadTex(base + u, item.id).then(t => (tick(), t))),
     ]);
     await ready;
     if (token !== this.token) { texs.forEach(t => t.dispose()); return false; }
@@ -152,7 +154,7 @@ class Stage {
     if (!model.texCache.has(k)) {
       const st = model.item.model.states[k];
       const urls = Object.values(st.tex).flat();
-      const texs = await Promise.all(urls.map(u => this.loadTex(model.item.model.dir + u)));
+      const texs = await Promise.all(urls.map(u => this.loadTex(model.item.model.dir + u, model.item.id)));
       model.texCache.set(k, new Map(urls.map((u, i) => [u, texs[i]])));
     }
     if (model !== this.model) return;
@@ -276,7 +278,7 @@ async function main() {
       fallback: v, model: null, onChange() {}, resize() {},
       async load(it, progress, ready) {
         await ready;
-        v.src = it.video.replace(/\.mp4$/, VIDEO_EXT);
+        v.src = assetUrl(it.video.replace(/\.mp4$/, VIDEO_EXT), it.id);
         v.play().catch(() => {});
         this.model = { item: it, state: it.model.states.length - 1 };
         return true;
@@ -310,7 +312,7 @@ async function main() {
     card.setAttribute('aria-label', it.title);
     card.innerHTML = `
       <div class="card__media">
-        <video muted loop playsinline preload="none" poster="${it.poster}" data-src="${it.video.replace(/\.mp4$/, VIDEO_EXT)}"></video>
+        <video muted loop playsinline preload="none" poster="${assetUrl(it.poster, it.id)}" data-src="${assetUrl(it.video.replace(/\.mp4$/, VIDEO_EXT), it.id)}"></video>
         <div class="card__photo"><img loading="lazy" src="${it.thumb}" alt=""></div>
         <span class="card__cta">View in 3D</span>
       </div>
@@ -371,7 +373,6 @@ async function main() {
     current = id;
     cards.forEach((c, k) => c.classList.toggle('is-current', k === id));
     if (user) {
-      history.replaceState(null, '', `#${id}`);
       const r = $('#gallery-stage').getBoundingClientRect();
       if (r.top < 0 || r.bottom > innerHeight) $('#viewer').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
     }
@@ -404,7 +405,6 @@ async function main() {
     const i = order.indexOf(current);
     const next = order[(i + d + order.length) % order.length] || order[0];
     select(next, false);
-    history.replaceState(null, '', `#${next}`);
   };
   tRot.addEventListener('click', toggleRotate);
   tBody.addEventListener('click', toggleBody);

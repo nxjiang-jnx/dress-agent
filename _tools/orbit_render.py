@@ -13,6 +13,7 @@ stays centred and keeps its scale across views.
         --out-dir frames/ --count 144 --elevation 2
 """
 import argparse
+from contextlib import nullcontext
 import importlib.util
 import json
 import math
@@ -58,6 +59,8 @@ def parse():
                    help="reuse centre/distance from this json (shared framing)")
     p.add_argument("--frames", default="", help="comma list of frame indices to render")
     p.add_argument("--skip-existing", action="store_true")
+    p.add_argument("--pass-cache", type=Path,
+                   help="keep rendered beauty and mask passes for interrupted orbits")
     p.add_argument("--layers", default="", help="keep only these garment layers (peel state)")
     p.add_argument("--cpu-denoise", action="store_true",
                    help="run OIDN on the CPU (Blender's default); the GPU run matches it to 1/255")
@@ -168,10 +171,17 @@ def main():
     scene.render.use_persistent_data = True
     scene.cycles.denoising_use_gpu = not args.cpu_denoise
 
-    with tempfile.TemporaryDirectory(prefix="orbit-", dir="/data/nanxiangjiang/tmp") as tmp:
+    if args.pass_cache:
+        args.pass_cache.mkdir(parents=True, exist_ok=True)
+    workspace = (nullcontext(str(args.pass_cache)) if args.pass_cache else
+                 tempfile.TemporaryDirectory(prefix="orbit-", dir="/data/nanxiangjiang/tmp"))
+    with workspace as tmp:
         tmp = Path(tmp)
         base.setup_render(tmp / "beauty.png", True, no_tone_mapping=False)
         for k, i in enumerate(todo):
+            if (tmp / f"agx_{i:03d}.png").is_file() and (tmp / f"std_{i:03d}.png").is_file():
+                print(f"beauty cached {k + 1}/{len(todo)}", flush=True)
+                continue
             place(camera, center, dist, azs[i], args.elevation)
             # Mapping POINT rotation samples E(R d): -az turns the map with the camera
             mapping.inputs["Rotation"].default_value[2] = math.radians(-azs[i]) if args.hdri_follow else 0.0
@@ -181,6 +191,8 @@ def main():
             print(f"beauty {k + 1}/{len(todo)} az={azs[i]:.1f}", flush=True)
         nt.configure_mask_scene(garments, tmp / "mask.png")
         for k, i in enumerate(todo):
+            if (tmp / f"mask_{i:03d}.png").is_file():
+                continue
             place(camera, center, dist, azs[i], args.elevation)
             scene.render.filepath = str(tmp / f"mask_{i:03d}.png")
             bpy.ops.render.render(write_still=True)
