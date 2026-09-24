@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
-import { bakedParts, setBaked } from './bakedmat.js?v=20260923u';
+import { bakedParts, setBaked } from './bakedmat.js?v=20260923w';
 
 const $ = (s, r = document) => r.querySelector(s);
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -291,9 +291,10 @@ async function main() {
   const loading = $('#stage-loading'), ring = $('#stage-ring');
   let current = null, loadTimer = null;
 
-  // ---- wall ----
-  const grid = $('#gallery-grid');
-  const cards = new Map();
+  // ---- gallery: two rows drifting in opposite directions (CSS), a row pauses under the pointer ----
+  const marquee = $('#gallery-marquee');
+  const tracks = [...marquee.querySelectorAll('.marquee__track')];
+  const cards = new Map();               // id -> its cards (each row shows its cards twice to loop)
   const vidObs = new IntersectionObserver(entries => {
     for (const e of entries) {
       const v = e.target;
@@ -302,27 +303,37 @@ async function main() {
         v.play().catch(() => {});
       } else v.pause();
     }
-  }, { rootMargin: '120px 0px', threshold: 0.15 });
+  }, { rootMargin: '80px 240px', threshold: 0.05 });
 
-  items.forEach((it, i) => {
+  const makeCard = (it, copy) => {
     const card = document.createElement('article');
     card.className = 'card';
-    card.tabIndex = 0;
-    card.style.animationDelay = `${Math.min(i, 12) * 35}ms`;
+    card.tabIndex = copy ? -1 : 0;
+    if (copy) card.setAttribute('aria-hidden', 'true');
     card.setAttribute('aria-label', it.title);
     card.innerHTML = `
       <div class="card__media">
-        <video muted loop playsinline preload="none" poster="${assetUrl(it.poster, it.id)}" data-src="${assetUrl(it.video.replace(/\.mp4$/, VIDEO_EXT), it.id)}"></video>
+        <video muted loop playsinline preload="none" poster="${assetUrl(it.poster)}" data-src="${assetUrl(it.video.replace(/\.mp4$/, VIDEO_EXT))}"></video>
         <div class="card__photo"><img loading="lazy" src="${assetUrl(it.thumb)}" alt=""></div>
         <span class="card__cta">View in 3D</span>
-      </div>
-`;
+      </div>`;
     card.addEventListener('click', () => select(it.id, true));
     card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(it.id, true); } });
-    grid.appendChild(card);
-    cards.set(it.id, card);
+    if (!cards.has(it.id)) cards.set(it.id, []);
+    cards.get(it.id).push(card);
     vidObs.observe(card.querySelector('video'));
+    return card;
+  };
+  // alternate results between the rows, so neither repeats the other and both mix the categories
+  const rows = [items.filter((_, i) => i % 2 === 0), items.filter((_, i) => i % 2 === 1)];
+  tracks.forEach((track, r) => {
+    for (const copy of [false, true]) rows[r].forEach(it => track.appendChild(makeCard(it, copy)));
   });
+  // one copy of a row slides past in (width / speed) seconds, the same speed for both rows
+  const pace = () => tracks.forEach(t => t.style.setProperty('--dur', `${(t.scrollWidth / 2 / 34).toFixed(1)}s`));
+  pace();
+  addEventListener('resize', pace);
+  new IntersectionObserver(e => marquee.classList.toggle('is-off', !e[0].isIntersecting)).observe(marquee);
 
   const order = items.map(it => it.id);
 
@@ -371,7 +382,7 @@ async function main() {
     const it = byId.get(id);
     if (!it || current === id) return;
     current = id;
-    cards.forEach((c, k) => c.classList.toggle('is-current', k === id));
+    cards.forEach((list, k) => list.forEach(c => c.classList.toggle('is-current', k === id)));
     if (user) {
       const r = $('#gallery-stage').getBoundingClientRect();
       if (r.top < 0 || r.bottom > innerHeight) $('#viewer').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
@@ -425,9 +436,13 @@ async function main() {
   });
   document.addEventListener('fullscreenchange', () => setTimeout(() => stage.resize(), 50));
 
+  // a result picked on gallery.html arrives through sessionStorage, so the address stays clean
+  let picked = null;
+  try { picked = sessionStorage.getItem('dress-open'); sessionStorage.removeItem('dress-open'); } catch (e) { /* storage off */ }
   const hash = decodeURIComponent(location.hash.slice(1));
-  select(byId.has(hash) ? hash : byId.has(data.default) ? data.default : items[0].id, false);
-  if (byId.has(hash)) setTimeout(() => $('#viewer').scrollIntoView({ block: 'start' }), 300);
+  const first = byId.has(picked) ? picked : byId.has(hash) ? hash : byId.has(data.default) ? data.default : items[0].id;
+  select(first, false);
+  if (first === picked || first === hash) setTimeout(() => $('#viewer').scrollIntoView({ block: 'start' }), 300);
 }
 
 main();

@@ -29,7 +29,7 @@
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="stylesheet" href="./static/css/dress.css?v=20260923u">
+  <link rel="stylesheet" href="./static/css/dress.css?v=20260923w">
 
   <script type="importmap">
     {
@@ -74,7 +74,7 @@
 </head>
 
 <body>
-<script>document.documentElement.classList.add('js'); window.SITE_VERSION = '20260923u';</script>
+<script>document.documentElement.classList.add('js'); window.SITE_VERSION = '20260923w';</script>
 
 <section class="hero hero-cover-desktop is-link is-hidden-touch is-fullheight video" id="top" style="overflow: hidden; position:relative;">
   <div class="hero-video is-hidden-touch"
@@ -286,8 +286,12 @@
     <div class="content has-text-centered">
       <h2 class="title is-3">Gallery</h2>
     </div>
-    <p class="comparison-scene-prompt">Every result comes from a single in-the-wild photo. Click one to open it in the viewer.</p>
-    <div class="wall" id="gallery-grid"></div>
+    <p class="comparison-scene-prompt">Every result comes from a single in-the-wild photo. Click one to open it in the viewer, or <a class="more-link" href="./gallery.html">see the full gallery<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a></p>
+  </div>
+  <!-- two rows drifting in opposite directions; a row pauses under the pointer -->
+  <div class="marquee" id="gallery-marquee" aria-label="Results">
+    <div class="marquee__row" data-dir="right"><div class="marquee__track"></div></div>
+    <div class="marquee__row" data-dir="left"><div class="marquee__track"></div></div>
   </div>
 </section>
 
@@ -373,9 +377,9 @@
   </div>
 </footer>
 
-<script type="module" src="./static/js/gallery.js?v=20260923u"></script>
-<script src="./static/js/compare.js?v=20260923u" defer></script>
-<script src="./static/js/site.js?v=20260923u" defer></script>
+<script type="module" src="./static/js/gallery.js?v=20260923w"></script>
+<script src="./static/js/compare.js?v=20260923w" defer></script>
+<script src="./static/js/site.js?v=20260923w" defer></script>
 </body>
 
 </html>
