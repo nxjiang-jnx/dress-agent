@@ -29,7 +29,7 @@
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="stylesheet" href="./static/css/dress.css?v=20260923w">
+  <link rel="stylesheet" href="./static/css/dress.css?v=20260925c">
 
   <script type="importmap">
     {
@@ -74,7 +74,7 @@
 </head>
 
 <body>
-<script>document.documentElement.classList.add('js'); window.SITE_VERSION = '20260923w';</script>
+<script>document.documentElement.classList.add('js'); window.SITE_VERSION = '20260925c';</script>
 
 <section class="hero hero-cover-desktop is-link is-hidden-touch is-fullheight video" id="top" style="overflow: hidden; position:relative;">
   <div class="hero-video is-hidden-touch"
@@ -262,8 +262,10 @@
         <button class="tool stage__nav is-next" id="stage-next" title="Next (&rarr;)" aria-label="Next result">
           <svg viewBox="0 0 24 24"><path d="M9.5 6l6 6-6 6"/></svg>
         </button>
-        <div class="stage__loading" id="stage-loading">
-          <div class="ring"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17"/><circle class="ring__bar" id="stage-ring" cx="20" cy="20" r="17"/></svg></div>
+        <!-- shown from the first paint until the first model is on screen (as CHORD's "Loading viewer…") -->
+        <div class="stage__loading is-on" id="stage-loading" role="status" aria-live="polite">
+          <div class="ring is-spin"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17"/><circle class="ring__bar" id="stage-ring" cx="20" cy="20" r="17"/></svg></div>
+          <p class="stage__loading-text"><span id="stage-loading-label">Loading 3D viewer…</span><span id="stage-loading-pct"></span></p>
         </div>
       </div>
 
@@ -377,9 +379,9 @@
   </div>
 </footer>
 
-<script type="module" src="./static/js/gallery.js?v=20260923w"></script>
-<script src="./static/js/compare.js?v=20260923w" defer></script>
-<script src="./static/js/site.js?v=20260923w" defer></script>
+<script type="module" src="./static/js/gallery.js?v=20260925c"></script>
+<script src="./static/js/compare.js?v=20260925c" defer></script>
+<script src="./static/js/site.js?v=20260925c" defer></script>
 </body>
 
 </html>

@@ -15,6 +15,7 @@ Jekyll skips this folder, so it is not published.
 | `run_jobs.py` | drains a job queue on one GPU; run one per GPU (2 and 3) |
 | `build_site.py` | frames to H.264 + VP9 video and posters, bakes to WebP, writes `static/data/*.json` |
 | `shot.py` | headless screenshots for checking the page |
+| `serve.py` | `python _tools/serve.py 8000`: like `python -m http.server`, but browsers revalidate every file (no stale page after an edit) and dropped video requests stay quiet |
 
 Order: `make_cases.py`, queue jobs, `run_jobs.py queue.json --gpu 2` and `--gpu 3`
 (bakes: `bake_case.py`, then `--body-inner-only`, then `hidden_masks.py` and `seam_fill.py`),

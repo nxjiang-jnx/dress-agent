@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
-import { bakedParts, setBaked } from './bakedmat.js?v=20260923w';
+import { bakedParts, setBaked } from './bakedmat.js?v=20260925c';
 
 const $ = (s, r = document) => r.querySelector(s);
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -288,8 +288,14 @@ async function main() {
       setRotate() {}, setBody() {}, resetView() {},
     };
   }
-  const loading = $('#stage-loading'), ring = $('#stage-ring');
-  let current = null, loadTimer = null;
+  const loading = $('#stage-loading'), ring = $('#stage-ring'), ringBox = ring.closest('.ring');
+  const loadLabel = $('#stage-loading-label'), loadPct = $('#stage-loading-pct');
+  let current = null, loadTimer = null, shown = false;   // shown: the first model is on screen
+  const progress = p => {
+    ringBox.classList.remove('is-spin');
+    ring.style.strokeDashoffset = 106.8 * (1 - p);
+    loadPct.textContent = `${Math.round(p * 100)}%`;
+  };
 
   // ---- gallery: two rows drifting in opposite directions (CSS), a row pauses under the pointer ----
   const marquee = $('#gallery-marquee');
@@ -388,18 +394,30 @@ async function main() {
       if (r.top < 0 || r.bottom > innerHeight) $('#viewer').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
     }
     clearTimeout(loadTimer);
-    ring.style.strokeDashoffset = 106.8;
-    loadTimer = setTimeout(() => loading.classList.add('is-on'), 250);
+    ringBox.classList.add('is-spin');
+    loadPct.textContent = '';
+    // the first load keeps the overlay that is on from the first paint; later switches show it
+    // only if they take a moment
+    if (shown) {
+      loadLabel.textContent = 'Loading…';
+      loadTimer = setTimeout(() => loading.classList.add('is-on'), 250);
+    }
     // the old result stays up until the new model, photo and patterns are all ready
     const side = Promise.all([still(assetUrl(it.photo)), Promise.all(it.pattern.map(u => still(assetUrl(u))))]);
-    const ok = await stage.load(it, p => { ring.style.strokeDashoffset = 106.8 * (1 - p); }, side)
+    const ok = await stage.load(it, progress, side)
       .catch(e => { console.error(e); return false; });
-    if (!ok || current !== id) return;
+    if (current !== id) return;
+    if (!ok) { clearTimeout(loadTimer); loading.classList.remove('is-on'); return; }   // never leave it stuck
     const [photo, stills] = await side;
     commitSide(it, photo, stills);
     renderPlan(stage.model || { state: it.model.states.length - 1 });
     clearTimeout(loadTimer);
-    loading.classList.remove('is-on');
+    // lift the overlay after two frames, so shader compiles and texture uploads happen under it
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      if (current !== id) return;
+      loading.classList.remove('is-on');
+      shown = true;
+    }));
   }
 
   // ---- tools ----
