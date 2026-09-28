@@ -15,8 +15,7 @@
   <meta property="og:description" content="Simulation-ready sewing patterns from a single in-the-wild image.">
   <meta property="og:image" content="./static/images/og.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="preload" as="video" href="./static/videos/teaser-small.mp4" type="video/mp4" media="(min-width: 1024px)">
-  <link rel="preload" as="video" href="./static/videos/teaser-mobile-small.mp4" type="video/mp4" media="(max-width: 1023px)">
+  <link rel="preload" as="image" href="./static/videos/beach.jpg">
 
   <meta name="msapplication-TileColor" content="#2774AE" />
   <meta name="msapplication-TileImage" content="./static/images/favicon-270.png" />
@@ -29,7 +28,7 @@
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="stylesheet" href="./static/css/dress.css?v=20260925c">
+  <link rel="stylesheet" href="./static/css/dress.css?v=20260928b">
 
   <script type="importmap">
     {
@@ -43,14 +42,16 @@
   <style>
   .hero-cover-desktop {
       background-color: #000000;
-      background-image: url("./static/videos/teaser.png");
+      background-image: url("./static/videos/beach.jpg");
       background-size: cover;
+      background-position: center bottom;
       color: #fff;
   }
   .hero-cover-touch {
       background-color: #000000;
-      background-image: url("./static/videos/teaser-mobile.png");
+      background-image: url("./static/videos/beach.jpg");
       background-size: cover;
+      background-position: center bottom;
       color: #fff;
   }
 
@@ -74,21 +75,16 @@
 </head>
 
 <body>
-<script>document.documentElement.classList.add('js'); window.SITE_VERSION = '20260925c';</script>
+<script>document.documentElement.classList.add('js'); window.SITE_VERSION = '20260928b';</script>
 
 <section class="hero hero-cover-desktop is-link is-hidden-touch is-fullheight video" id="top" style="overflow: hidden; position:relative;">
-  <div class="hero-video is-hidden-touch"
-    style="height: 100%; width: 177.77777778vh; min-width: 100%;min-height: 56.25vw;">
-    <video playsinline autoplay muted loop preload="auto">
-      <source src="./static/videos/teaser-small.mp4" type="video/mp4">
+  <!-- backdrop film: fills the hero, centred, its bottom edge on the hero's bottom (dress.css) -->
+  <div class="hero-video">
+    <video playsinline autoplay muted loop preload="auto" poster="./static/videos/beach.jpg">
+      <source src="./static/videos/beach.mp4" type="video/mp4">
+      <source src="./static/videos/beach.webm" type="video/webm">
     </video>
   </div>
-  <div class="hero-video is-hidden-desktop is-inline-block-mobile"
-    style="height: 154.28571428vw; width: 100%; min-width:64.81481481vh;min-height:100%;">
-    <video playsinline autoplay muted loop preload="auto">
-      <source src="./static/videos/teaser-mobile-small.mp4" type="video/mp4">
-    </video>
-  </div> 
   <div class="overlay">
   </div>
 
@@ -168,11 +164,11 @@
 
 <section class="hero hero-cover-touch is-hidden-desktop is-link is-fullheight video" style="overflow: hidden; position:relative;">
 
-  <div class="hero-video is-inline-block-mobile"
-  style="height: 172.28571428vw; width: 100%; min-width: 100%;min-height: 56.25vw;">
-  <video playsinline autoplay muted loop preload="auto">
-    <source src="./static/videos/teaser-mobile-small.mp4" type="video/mp4">
-  </video>
+  <div class="hero-video">
+    <video playsinline autoplay muted loop preload="auto" poster="./static/videos/beach.jpg">
+      <source src="./static/videos/beach-720.mp4" type="video/mp4">
+      <source src="./static/videos/beach.webm" type="video/webm">
+    </video>
   </div>
 
 
@@ -379,9 +375,9 @@
   </div>
 </footer>
 
-<script type="module" src="./static/js/gallery.js?v=20260925c"></script>
-<script src="./static/js/compare.js?v=20260925c" defer></script>
-<script src="./static/js/site.js?v=20260925c" defer></script>
+<script type="module" src="./static/js/gallery.js?v=20260928b"></script>
+<script src="./static/js/compare.js?v=20260928b" defer></script>
+<script src="./static/js/site.js?v=20260928b" defer></script>
 </body>
 
 </html>
