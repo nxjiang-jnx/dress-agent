@@ -253,6 +253,10 @@ body.fg { margin: 0; min-height: 100vh; background: #f7f7f8; color: var(--ink); 
 .bib__copy.is-done .bib__icon { display: none; }
 .bib__copy.is-done .bib__check, .bib__copy.is-done .bib__label { display: inline; }
 
+/* ---------- garments in motion ---------- */
+/* wide enough that the two sentences set in two full lines, no lone words on a third */
+.motion-lead { max-width: 820px; margin: 0 auto; }
+
 /* ---------- hero backdrop film ---------- */
 /* fills the hero like a cover image, centred left-right, its bottom edge on the hero's bottom,
    so the dancers and the sand stay in view on any screen shape */

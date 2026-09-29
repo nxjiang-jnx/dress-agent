@@ -28,7 +28,7 @@
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="stylesheet" href="./static/css/dress.css?v=20260928b">
+  <link rel="stylesheet" href="./static/css/dress.css?v=20260928f">
 
   <script type="importmap">
     {
@@ -75,7 +75,7 @@
 </head>
 
 <body>
-<script>document.documentElement.classList.add('js'); window.SITE_VERSION = '20260928b';</script>
+<script>document.documentElement.classList.add('js'); window.SITE_VERSION = '20260928f';</script>
 
 <section class="hero hero-cover-desktop is-link is-hidden-touch is-fullheight video" id="top" style="overflow: hidden; position:relative;">
   <!-- backdrop film: fills the hero, centred, its bottom edge on the hero's bottom (dress.css) -->
@@ -154,6 +154,7 @@
     <nav class="tabs is-toggle is-toggle-rounded is-centered is-size-5 jump-tabs" aria-label="Jump to section">
       <ul>
         <li><a href="#intro">Introduction</a></li>
+        <li><a href="#motion">Garments in Motion</a></li>
         <li><a href="#viewer">Interactive Viewer</a></li>
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#comparisons">Comparisons</a></li>
@@ -214,6 +215,36 @@
     </div>
   </div>
 </section>
+
+<!-- Garments in motion: CHORD's "Gallery of Generated 4D Scenes" layout, the film grows as it scrolls in -->
+<section class="section is-small" id="motion">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column">
+        <h2 class="title is-1 has-text-centered is-size-4-mobile">Garments in Motion</h2>
+        <div class="content motion-lead">
+          <p>
+            Our pipeline is not limited by camera view, body pose, or the number of garment layers. From a single <span style="white-space: nowrap">in-the-wild</span> image, it recovers simulation-ready garments that move naturally with the body in 4D scenes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-centered is-size-4-mobile">Five friends dance on the beach</h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<video class="scroll-scale-video" autoplay muted loop playsinline preload="none" data-lazy="true" poster="./static/images/loading.svg">
+  <source data-src="./static/videos/motion.mp4" type="video/mp4">
+</video>
 
 <!-- Gallery -->
 <section class="section viser-section" id="viewer">
@@ -375,9 +406,9 @@
   </div>
 </footer>
 
-<script type="module" src="./static/js/gallery.js?v=20260928b"></script>
-<script src="./static/js/compare.js?v=20260928b" defer></script>
-<script src="./static/js/site.js?v=20260928b" defer></script>
+<script type="module" src="./static/js/gallery.js?v=20260928f"></script>
+<script src="./static/js/compare.js?v=20260928f" defer></script>
+<script src="./static/js/site.js?v=20260928f" defer></script>
 </body>
 
 </html>
